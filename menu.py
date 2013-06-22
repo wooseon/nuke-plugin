@@ -10,12 +10,6 @@ m.addSeparator()
 
 n=m.addMenu("WRITE", icon="Write.png")
 n.addCommand("Write DPX", "pipeline.customWrite('dpx')", index=1, icon="Write.png")
-#n.addCommand("Write PNG", "pipeline.customWrite('png')", index=1, icon="Write.png")
-#n.addCommand("Write EXR Review", "pipeline.customWrite('exr', 'review')", index=2, icon="Write.png")
-#n.addCommand("Write EXR Server", "pipeline.customWrite('exr')", index=3, icon="Write.png")
-#n.addSeparator()
-#n.addCommand("Write EXR Editorial Alpha", "pipeline.customWrite('exr', 'editorial')", index=4, icon="Write.png")
-#n.addCommand("Write PNG Editorial Alpha", "pipeline.customWrite('png', 'editorial')", index=5, icon="Write.png")
 
 n=m.addMenu("LUT", icon=":qrc/images/Toolbar3DLUT.png")
 
@@ -57,30 +51,8 @@ m=menubar.addMenu("&Edit")
 #Set Project Frame Range
 m.addCommand("&Node/Set Project Frame Range From Node", setProjectFrameRange.callPanel, '^R')
 
-m=menubar.addMenu("&Render")
-#Render Manager - SMEDGE
-#import SmedgeRender
-#m.addSeparator(index=5)
-#m.addCommand("Submit to Smedge", "SmedgeRender.SmedgeRender()", "^F5", index=6)
-
 m = menubar.addMenu("Import and Export")
 # Nuke2Maya
 import FromNuke2MayaExporter, FromMaya2NukeImporter
 m.addCommand("Export Camera as fm2n-File", "FromNuke2MayaExporter.FromNuke2MayaExporter()")
 m.addCommand("Import fm2n-File", "FromMaya2NukeImporter.FromMaya2NukeImporter()")
-
-
-# PANELS
-# ////////////////////////////////////////////////////////////////////////////////
-#import SearchReplacePanel
-#
-#def addSRPanel():
-#        '''Run the panel script and add it as a tab into the pane it is called from'''
-#        myPanel = SearchReplacePanel.SearchReplacePanel()
-#        return myPanel.addToPane()
-#
-##THIS LINE WILL ADD THE NEW ENTRY TO THE PANE MENU
-#nuke.menu('Pane').addCommand('SearchReplace', addSRPanel)
-#
-##THIS LINE WILL REGISTER THE PANEL SO IT CAN BE RESTORED WITH LAYOUTS
-#nukescripts.registerPanel('com.ohufx.SearchReplace', addSRPanel)
