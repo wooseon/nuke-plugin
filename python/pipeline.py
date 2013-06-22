@@ -75,7 +75,7 @@ def customWrite(extension = 'exr', destination = 'server'):
 			w.knob("file").setValue(editorialDir + 'Planes/' + shotName + '/PNG/' + parentDir + '/' + filename + printf + '.' + 'png')
 		else:
 			w.knob("file").setValue(shotDir + 'Review/' + parentDir + '/' + filename + printf + '.' + extension)
-		w.knob("colorspace").setValue("rec709")
+		#w.knob("colorspace").setValue("rec709")
 		w.knob("channels").setValue("rgba")
 	# MOV
 	elif extension == "mov":

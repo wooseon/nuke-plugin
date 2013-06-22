@@ -14,7 +14,7 @@ Gizmo {
  Filename_ctrl "\[file rootname \[file tail \[value root.name]]]"
  addUserKnob {1 Description_ctrl l Description t "Add short info about the shot. This text is centred."}
  addUserKnob {3 SlateVisibleFrame_ctrl l "Slate Frame" t "The overlays are hidden on this frame."}
- SlateVisibleFrame_ctrl 40
+ SlateVisibleFrame_ctrl 0
  addUserKnob {20 Setup}
  addUserKnob {2 Font_ctrl l Font}
  Font_ctrl "\[getenv NUKE_PATH \[getenv HOME]/.nuke]/fonts/FreeSans.ttf"

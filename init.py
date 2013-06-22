@@ -33,6 +33,11 @@ nuke.knobDefault('Root.fps', '23.976')
 #nuke.knobDefault('monitorLut', 'rec709')
 #nuke.knobDefault('floatLut', 'rec709')
 
+#CB
+nuke.ViewerProcess.register("Cineon", nuke.createNode,("ViewerProcess_1DLUT", "current Cineon"))
+nuke.knobDefault('Viewer.viewerProcess', 'Cineon')
+nuke.knobDefault('monitorLut', 'Cineon')
+
 # OTHER
 # ////////////////////////////////////////////////////////////////////////////////
 
