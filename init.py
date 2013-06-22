@@ -10,7 +10,7 @@ nuke.pluginAddPath('./lut')
 
 import os, nukescripts, platform
 import pipeline
-import sendToAvconv
+#import sendToAvconv
 
 # SET KNOB DEFAULTS
 # ////////////////////////////////////////////////////////////////////////////////
@@ -18,7 +18,7 @@ import sendToAvconv
 # WRITE NODE
 # use this instead of nuke.addBeforeRender so that artists can remove it locally if needed
 nuke.knobDefault('Write.beforeRender', 'pipeline.createWriteDir()')
-nuke.knobDefault('Write.afterRender', 'sendToAvconv.sendToAvconv()')
+#nuke.knobDefault('Write.afterRender', 'sendToAvconv.sendToAvconv()')
 
 # ROOT
 nuke.knobDefault('Root.project_directory', '[python {nuke.script_directory()}]/../')
