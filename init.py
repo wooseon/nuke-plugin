@@ -22,7 +22,8 @@ nuke.knobDefault('Write.afterRender', 'sendToAvconv.sendToAvconv()')
 
 # ROOT
 nuke.knobDefault('Root.project_directory', '[python {nuke.script_directory()}]/../')
-nuke.knobDefault('Root.format', 'HD')
+nuke.addFormat( '2048 1152 0 0 2048 1152 1 2k_16:9' )
+nuke.knobDefault('Root.format', '2k_16:9')
 nuke.knobDefault('Root.proxy_type', 'scale')
 nuke.knobDefault('Root.proxy_scale', '.5')
 nuke.knobDefault('Root.fps', '23.976')
