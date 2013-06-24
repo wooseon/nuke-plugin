@@ -26,7 +26,7 @@ nuke.addFormat( '2048 1152 0 0 2048 1152 1 2k_16:9' )
 nuke.knobDefault('Root.format', '2k_16:9')
 nuke.knobDefault('Root.proxy_type', 'scale')
 nuke.knobDefault('Root.proxy_scale', '.5')
-nuke.knobDefault('Root.fps', '23.976')
+nuke.knobDefault('Root.fps', '24')
 
 # LUTs
 #CB
