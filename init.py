@@ -37,9 +37,11 @@ reformat_presets.nodePresetReformat()
 
 # LUTs
 #CB
-#nuke.ViewerProcess.register("Cineon", nuke.createNode,("ViewerProcess_1DLUT", "current Cineon"))
-#nuke.knobDefault('Viewer.viewerProcess', 'Cineon')
-#nuke.knobDefault('monitorLut', 'Cineon')
+nuke.knobDefault('Viewer.viewerProcess', 'None')
+nuke.knobDefault('monitorLut', 'linear')
+nuke.knobDefault('logLut', 'linear')
+nuke.knobDefault('int8lut', 'linear')
+nuke.knobDefault('int16lut', 'linear')
 
 # OTHER
 # ////////////////////////////////////////////////////////////////////////////////
