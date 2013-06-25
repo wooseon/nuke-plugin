@@ -1,4 +1,5 @@
 import nuke, pipeline, setProjectFrameRange
+import nodeCount
 
 # TOOLS
 # ////////////////////////////////////////////////////////////////////////////////
@@ -57,3 +58,17 @@ m = menubar.addMenu("Import and Export")
 import FromNuke2MayaExporter, FromMaya2NukeImporter
 m.addCommand("Export Camera as fm2n-File", "FromNuke2MayaExporter.FromNuke2MayaExporter()")
 m.addCommand("Import fm2n-File", "FromMaya2NukeImporter.FromMaya2NukeImporter()")
+#Collect Files Menu Node
+m.addSeparator()
+import collectFiles
+m.addCommand('Collect Files', 'collectFiles.collectFiles()')
+#reveal in OS
+import revealInOS
+m.addCommand('Reveal In Finder','revealInOS.revealInOS()', icon='Read.png')
+m.addSeparator()
+#Metadata
+import showMetaData
+m.addCommand("Show MetaData","nuke.display('showMetaData.showMeta()', nuke.selectedNode(),'MetaData at ' + nuke.selectedNode().name(), 1000)","ctrl+m")
+m.addCommand("Mirror Nodes x", "nuke.tcl('MirrorNodePos x')")
+
+

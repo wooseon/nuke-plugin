@@ -3,8 +3,8 @@ import nuke
 #PLUGIN PATHS
 nuke.pluginAddPath('./gizmos')
 nuke.pluginAddPath('./python')
+nuke.pluginAddPath('./tcl')
 nuke.pluginAddPath('./icons')
-nuke.pluginAddPath('./python')
 nuke.pluginAddPath('./lib')
 nuke.pluginAddPath('./lut')
 
