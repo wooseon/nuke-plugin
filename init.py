@@ -3,8 +3,8 @@ import nuke
 #PLUGIN PATHS
 nuke.pluginAddPath('./gizmos')
 nuke.pluginAddPath('./python')
+nuke.pluginAddPath('./tcl')
 nuke.pluginAddPath('./icons')
-nuke.pluginAddPath('./python')
 nuke.pluginAddPath('./lib')
 nuke.pluginAddPath('./lut')
 
@@ -28,11 +28,18 @@ nuke.knobDefault('Root.proxy_type', 'scale')
 nuke.knobDefault('Root.proxy_scale', '.5')
 nuke.knobDefault('Root.fps', '24')
 
+# NODE PRESETS
+# ////////////////////////////////////////////////////////////////////////////////
+import cam_presets
+cam_presets.nodePresetCamera()
+import reformat_presets
+reformat_presets.nodePresetReformat()
+
 # LUTs
 #CB
-nuke.ViewerProcess.register("Cineon", nuke.createNode,("ViewerProcess_1DLUT", "current Cineon"))
-nuke.knobDefault('Viewer.viewerProcess', 'Cineon')
-nuke.knobDefault('monitorLut', 'Cineon')
+#nuke.ViewerProcess.register("Cineon", nuke.createNode,("ViewerProcess_1DLUT", "current Cineon"))
+#nuke.knobDefault('Viewer.viewerProcess', 'Cineon')
+#nuke.knobDefault('monitorLut', 'Cineon')
 
 # OTHER
 # ////////////////////////////////////////////////////////////////////////////////
