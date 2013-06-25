@@ -40,8 +40,8 @@ reformat_presets.nodePresetReformat()
 nuke.knobDefault('Viewer.viewerProcess', 'None')
 nuke.knobDefault('monitorLut', 'linear')
 nuke.knobDefault('logLut', 'linear')
-nuke.knobDefault('int8lut', 'linear')
-nuke.knobDefault('int16lut', 'linear')
+nuke.knobDefault('int8Lut', 'linear')
+nuke.knobDefault('int16Lut', 'linear')
 
 # OTHER
 # ////////////////////////////////////////////////////////////////////////////////
