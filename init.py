@@ -30,9 +30,9 @@ nuke.knobDefault('Root.fps', '24')
 
 # LUTs
 #CB
-nuke.ViewerProcess.register("Cineon", nuke.createNode,("ViewerProcess_1DLUT", "current Cineon"))
-nuke.knobDefault('Viewer.viewerProcess', 'Cineon')
-nuke.knobDefault('monitorLut', 'Cineon')
+#nuke.ViewerProcess.register("Cineon", nuke.createNode,("ViewerProcess_1DLUT", "current Cineon"))
+#nuke.knobDefault('Viewer.viewerProcess', 'Cineon')
+#nuke.knobDefault('monitorLut', 'Cineon')
 
 # OTHER
 # ////////////////////////////////////////////////////////////////////////////////
