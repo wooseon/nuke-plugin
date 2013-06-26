@@ -90,7 +90,7 @@ Gizmo {
   xpos -370
   ypos 62
  }
-set N4f231be0 [stack 0]
+set N4bd6d2d0 [stack 0]
  Shuffle {
   alpha white
   name Shuffle2
@@ -460,7 +460,6 @@ set N4f231be0 [stack 0]
  Group {
   inputs 0
   name ColorBars
-  selected true
   xpos -920
   ypos 159
   postage_stamp true
@@ -502,17 +501,9 @@ set N4f231be0 [stack 0]
    format "1920 1080 0 0 1920 1080 1 HD"
    name ColorBars1
    xpos -480
-   ypos -585
+   ypos -562
   }
-  Colorspace {
-   colorspace_out sRGB
-   name Colorspace1
-   selected true
-   xpos -480
-   ypos -514
-   disable {{LinearColorbars}}
-  }
-set N288f3300 [stack 0]
+set N4bf91bd0 [stack 0]
   Reformat {
    resize distort
    turn true
@@ -715,7 +706,7 @@ set N288f3300 [stack 0]
    xpos -700
    ypos -970
   }
-  set C23170960 [stack 0]
+  set C4c04c110 [stack 0]
   Transform {
    scale {{1/24 i} 1}
    name Transform8
@@ -723,7 +714,7 @@ set N288f3300 [stack 0]
    xpos -700
    ypos -928
   }
-  set C233609f0 [stack 0]
+  set C4c057e30 [stack 0]
   Transform {
    scale {1 0.875}
    name Transform4
@@ -731,13 +722,13 @@ set N288f3300 [stack 0]
    xpos -700
    ypos -880
   }
-  set C22b67610 [stack 0]
+  set C4c0632a0 [stack 0]
   Reformat {
    name Reformat7
    xpos -700
    ypos -828
   }
-  set C22bb1a10 [stack 0]
+  set C4c06e300 [stack 0]
   Text {
    message "Macbeth "
    font "\[value native_font.font]"
@@ -928,22 +919,22 @@ set N288f3300 [stack 0]
    xpos -150
    ypos -1024
   }
-clone $C23170960 {
+clone $C4c04c110 {
    xpos -150
    ypos -970
    selected false
   }
-clone $C233609f0 {
+clone $C4c057e30 {
    xpos -150
    ypos -928
    selected false
   }
-clone $C22b67610 {
+clone $C4c0632a0 {
    xpos -150
    ypos -880
    selected false
   }
-clone $C22bb1a10 {
+clone $C4c06e300 {
    xpos -150
    ypos -826
    selected false
@@ -1145,22 +1136,22 @@ clone $C22bb1a10 {
    xpos 400
    ypos -1024
   }
-clone $C23170960 {
+clone $C4c04c110 {
    xpos 400
    ypos -970
    selected false
   }
-clone $C233609f0 {
+clone $C4c057e30 {
    xpos 400
    ypos -928
    selected false
   }
-clone $C22b67610 {
+clone $C4c0632a0 {
    xpos 400
    ypos -880
    selected false
   }
-clone $C22bb1a10 {
+clone $C4c06e300 {
    xpos 400
    ypos -826
    selected false
@@ -1220,7 +1211,7 @@ clone $C22bb1a10 {
    xpos -260
    ypos -370
   }
-push $N288f3300
+push $N4bf91bd0
   Viewer {
    viewerProcess None
    input_process false
@@ -1234,6 +1225,13 @@ push $N288f3300
   name Merge61
   xpos -700
   ypos 230
+ }
+ Colorspace {
+  colorspace_out sRGB
+  name Colorspace1
+  xpos -700
+  ypos 256
+  disable {{LinearColorbars}}
  }
  Merge2 {
   inputs 2
@@ -1313,8 +1311,8 @@ push $N288f3300
   xpos -150
   ypos 342
  }
-set N2288e7d0 [stack 0]
-push $N4f231be0
+set N4c3147f0 [stack 0]
+push $N4bd6d2d0
  Dot {
   name Dot1
   xpos -226
@@ -1344,7 +1342,7 @@ push $N4f231be0
   xpos -480
   ypos 590
  }
-push $N2288e7d0
+push $N4c3147f0
  Viewer {
   viewerProcess rec709
   input_process false
