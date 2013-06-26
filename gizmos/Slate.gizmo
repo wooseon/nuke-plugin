@@ -1,5 +1,5 @@
-#! /Applications/Nuke6.3v4/NukeX6.3v4.app/../Nuke6.3v4.app/Contents/MacOS/Nuke6.3v4 -nx
-version 6.3 v4
+#! /usr/local/Nuke7.0v4/Nuke7.0 -nx
+version 7.0 v4
 Gizmo {
  tile_color 0x910c00ff
  note_font Verdana
@@ -7,13 +7,12 @@ Gizmo {
  mapsize {0.15 0.15}
  addUserKnob {20 Slate}
  addUserKnob {1 Project_ctrl l "Project Title"}
- Project_ctrl ""
+ Project_ctrl "Christmas Bounty"
  addUserKnob {1 ShotName_ctrl l "Shot Name"}
  ShotName_ctrl "\[lrange \[split \[file rootname \[file tail \[value root.name]]] \"_\"] 0 2 ]"
- #addUserKnob {4 Artist_ctrl l Artist M {-- "Alan Harrison" "Carlos Guzman" "Claude Theriault" "Geoff Hancock" "Gil Valencia" "Gustavo Kasai" "Juan Rodriguez" "Karthik Kesiraju" "Krishna Ram" "Max Schroeder" "Michael Balzer" "Miguel Ponce" "Richard Greenwood" "Ryan Epp"}}
- addUserKnob {4 Artist_ctrl l Artist M {-- "Gustavo Kasai" "Karthik Kesiraju" "Max Schroeder" "Miguel Ponce" "Richard Greenwood" }}
+ addUserKnob {4 Artist_ctrl l Artist M {-- "Gustavo Kasai" "Karthik Kesiraju" "Max Schroeder" "Miguel Ponce" "Richard Greenwood"}}
  addUserKnob {1 Vendor_ctrl l Vendor -STARTLINE}
- Vendor_ctrl "GVFX"
+ Vendor_ctrl GVFX
  addUserKnob {20 Versions l Version n 1}
  Versions 0
  addUserKnob {1 CompVersion_ctrl l Comp}
@@ -41,16 +40,15 @@ Gizmo {
  addUserKnob {20 endGroup_2 l endGroup n -1}
  addUserKnob {26 ""}
  addUserKnob {3 SlateVisibleFrame_ctrl l "Visible Frame" -STARTLINE}
- SlateVisibleFrame_ctrl 0
  addUserKnob {20 Setup}
  addUserKnob {41 font l Font T native_font.font}
  addUserKnob {26 ""}
  addUserKnob {3 thumbnailOffset_ctrl l "Thumbnail Offset"}
  thumbnailOffset_ctrl -1
  addUserKnob {26 ""}
+ addUserKnob {6 LinearColorbars l "Linear Colorbars" t "Bake in sRGB curve to colorbars" +STARTLINE}
  addUserKnob {6 SlugImage_ctrl l "Show Oscar" +STARTLINE}
- SlugImage_ctrl false
- addUserKnob {26 "" +STARTLINE}
+ addUserKnob {26 ""}
  addUserKnob {26 Author -STARTLINE T "Richard Greenwod"}
 }
  BackdropNode {
@@ -92,8 +90,7 @@ Gizmo {
   xpos -370
   ypos 62
  }
-set N56eb880 [stack 0]
-add_layer {rgba redguard1.glow}
+set N4f231be0 [stack 0]
  Shuffle {
   alpha white
   name Shuffle2
@@ -463,6 +460,7 @@ add_layer {rgba redguard1.glow}
  Group {
   inputs 0
   name ColorBars
+  selected true
   xpos -920
   ypos 159
   postage_stamp true
@@ -504,8 +502,17 @@ add_layer {rgba redguard1.glow}
    format "1920 1080 0 0 1920 1080 1 HD"
    name ColorBars1
    xpos -480
-   ypos -561
+   ypos -585
   }
+  Colorspace {
+   colorspace_out sRGB
+   name Colorspace1
+   selected true
+   xpos -480
+   ypos -514
+   disable {{LinearColorbars}}
+  }
+set N288f3300 [stack 0]
   Reformat {
    resize distort
    turn true
@@ -708,7 +715,7 @@ add_layer {rgba redguard1.glow}
    xpos -700
    ypos -970
   }
-  set C33acfb10 [stack 0]
+  set C23170960 [stack 0]
   Transform {
    scale {{1/24 i} 1}
    name Transform8
@@ -716,7 +723,7 @@ add_layer {rgba redguard1.glow}
    xpos -700
    ypos -928
   }
-  set C33ad8530 [stack 0]
+  set C233609f0 [stack 0]
   Transform {
    scale {1 0.875}
    name Transform4
@@ -724,13 +731,13 @@ add_layer {rgba redguard1.glow}
    xpos -700
    ypos -880
   }
-  set C33adf3c0 [stack 0]
+  set C22b67610 [stack 0]
   Reformat {
    name Reformat7
    xpos -700
    ypos -828
   }
-  set C33ae6240 [stack 0]
+  set C22bb1a10 [stack 0]
   Text {
    message "Macbeth "
    font "\[value native_font.font]"
@@ -742,7 +749,6 @@ add_layer {rgba redguard1.glow}
    rotate -90
    color 0.25
    name Macbeth_Text
-   selected true
    xpos -700
    ypos -802
   }
@@ -922,22 +928,22 @@ add_layer {rgba redguard1.glow}
    xpos -150
    ypos -1024
   }
-clone $C33acfb10 {
+clone $C23170960 {
    xpos -150
    ypos -970
    selected false
   }
-clone $C33ad8530 {
+clone $C233609f0 {
    xpos -150
    ypos -928
    selected false
   }
-clone $C33adf3c0 {
+clone $C22b67610 {
    xpos -150
    ypos -880
    selected false
   }
-clone $C33ae6240 {
+clone $C22bb1a10 {
    xpos -150
    ypos -826
    selected false
@@ -1139,22 +1145,22 @@ clone $C33ae6240 {
    xpos 400
    ypos -1024
   }
-clone $C33acfb10 {
+clone $C23170960 {
    xpos 400
    ypos -970
    selected false
   }
-clone $C33ad8530 {
+clone $C233609f0 {
    xpos 400
    ypos -928
    selected false
   }
-clone $C33adf3c0 {
+clone $C22b67610 {
    xpos 400
    ypos -880
    selected false
   }
-clone $C33ae6240 {
+clone $C22bb1a10 {
    xpos 400
    ypos -826
    selected false
@@ -1213,6 +1219,14 @@ clone $C33ae6240 {
    name Output1
    xpos -260
    ypos -370
+  }
+push $N288f3300
+  Viewer {
+   viewerProcess None
+   input_process false
+   name Viewer1
+   xpos -667
+   ypos -528
   }
  end_group
  Merge2 {
@@ -1299,8 +1313,8 @@ clone $C33ae6240 {
   xpos -150
   ypos 342
  }
-set N33cad6c0 [stack 0]
-push $N56eb880
+set N2288e7d0 [stack 0]
+push $N4f231be0
  Dot {
   name Dot1
   xpos -226
@@ -1330,7 +1344,7 @@ push $N56eb880
   xpos -480
   ypos 590
  }
-push $N33cad6c0
+push $N2288e7d0
  Viewer {
   viewerProcess rec709
   input_process false
