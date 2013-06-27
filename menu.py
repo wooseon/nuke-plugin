@@ -10,6 +10,8 @@ m.addCommand("BurnIn", "nuke.createNode('BurnIn')", index=2, icon="slate.png")
 m.addSeparator()
 
 n=m.addMenu("WRITE", icon="Write.png")
+n.addCommand("Write DPX", "pipeline.customWrite('dpx')", index=1, icon="Write.png")
+n.addCommand("Write PNG", "pipeline.customWrite('png')", index=1, icon="Write.png")
 
 n=m.addMenu("LUT", icon=":qrc/images/Toolbar3DLUT.png")
 
