@@ -7,12 +7,12 @@ Gizmo {
  mapsize {0.15 0.15}
  addUserKnob {20 Slate}
  addUserKnob {1 Project_ctrl l "Project Title"}
- Project_ctrl "Christmas Bounty"
+ Project_ctrl "The Forest"
  addUserKnob {1 ShotName_ctrl l "Shot Name"}
  ShotName_ctrl "\[lrange \[split \[file rootname \[file tail \[value root.name]]] \"_\"] 0 2 ]"
- addUserKnob {4 Artist_ctrl l Artist M {-- "Gustavo Kasai" "Karthik Kesiraju" "Max Schroeder" "Miguel Ponce" "Richard Greenwood"}}
+ addUserKnob {4 Artist_ctrl l Artist M {-- "Gustavo Kasai" "Karthik Kesiraju" "Max Schroeder" "Miguel Ponce" "Richard Greenwood" "Ryan Epp"}}
  addUserKnob {1 Vendor_ctrl l Vendor -STARTLINE}
- Vendor_ctrl GVFX
+ Vendor_ctrl "In House"
  addUserKnob {20 Versions l Version n 1}
  Versions 0
  addUserKnob {1 CompVersion_ctrl l Comp}
@@ -40,13 +40,13 @@ Gizmo {
  addUserKnob {20 endGroup_2 l endGroup n -1}
  addUserKnob {26 ""}
  addUserKnob {3 SlateVisibleFrame_ctrl l "Visible Frame" -STARTLINE}
+ SlateVisibleFrame_ctrl 40
  addUserKnob {20 Setup}
  addUserKnob {41 font l Font T native_font.font}
  addUserKnob {26 ""}
  addUserKnob {3 thumbnailOffset_ctrl l "Thumbnail Offset"}
  thumbnailOffset_ctrl -1
  addUserKnob {26 ""}
- addUserKnob {6 LinearColorbars l "Linear Colorbars" t "Bake in sRGB curve to colorbars" +STARTLINE}
  addUserKnob {6 SlugImage_ctrl l "Show Oscar" +STARTLINE}
  addUserKnob {26 ""}
  addUserKnob {26 Author -STARTLINE T "Richard Greenwod"}
@@ -90,7 +90,7 @@ Gizmo {
   xpos -370
   ypos 62
  }
-set N4bd6d2d0 [stack 0]
+set N8eea390 [stack 0]
  Shuffle {
   alpha white
   name Shuffle2
@@ -503,7 +503,7 @@ set N4bd6d2d0 [stack 0]
    xpos -480
    ypos -562
   }
-set N4bf91bd0 [stack 0]
+set N910f060 [stack 0]
   Reformat {
    resize distort
    turn true
@@ -706,7 +706,7 @@ set N4bf91bd0 [stack 0]
    xpos -700
    ypos -970
   }
-  set C4c04c110 [stack 0]
+  set C91b8280 [stack 0]
   Transform {
    scale {{1/24 i} 1}
    name Transform8
@@ -714,7 +714,7 @@ set N4bf91bd0 [stack 0]
    xpos -700
    ypos -928
   }
-  set C4c057e30 [stack 0]
+  set C91c4420 [stack 0]
   Transform {
    scale {1 0.875}
    name Transform4
@@ -722,13 +722,13 @@ set N4bf91bd0 [stack 0]
    xpos -700
    ypos -880
   }
-  set C4c0632a0 [stack 0]
+  set C91cf650 [stack 0]
   Reformat {
    name Reformat7
    xpos -700
    ypos -828
   }
-  set C4c06e300 [stack 0]
+  set C91da8d0 [stack 0]
   Text {
    message "Macbeth "
    font "\[value native_font.font]"
@@ -919,22 +919,22 @@ set N4bf91bd0 [stack 0]
    xpos -150
    ypos -1024
   }
-clone $C4c04c110 {
+clone $C91b8280 {
    xpos -150
    ypos -970
    selected false
   }
-clone $C4c057e30 {
+clone $C91c4420 {
    xpos -150
    ypos -928
    selected false
   }
-clone $C4c0632a0 {
+clone $C91cf650 {
    xpos -150
    ypos -880
    selected false
   }
-clone $C4c06e300 {
+clone $C91da8d0 {
    xpos -150
    ypos -826
    selected false
@@ -1136,22 +1136,22 @@ clone $C4c06e300 {
    xpos 400
    ypos -1024
   }
-clone $C4c04c110 {
+clone $C91b8280 {
    xpos 400
    ypos -970
    selected false
   }
-clone $C4c057e30 {
+clone $C91c4420 {
    xpos 400
    ypos -928
    selected false
   }
-clone $C4c0632a0 {
+clone $C91cf650 {
    xpos 400
    ypos -880
    selected false
   }
-clone $C4c06e300 {
+clone $C91da8d0 {
    xpos 400
    ypos -826
    selected false
@@ -1211,7 +1211,7 @@ clone $C4c06e300 {
    xpos -260
    ypos -370
   }
-push $N4bf91bd0
+push $N910f060
   Viewer {
    viewerProcess None
    input_process false
@@ -1223,15 +1223,9 @@ push $N4bf91bd0
  Merge2 {
   inputs 2
   name Merge61
+  selected true
   xpos -700
   ypos 230
- }
- Colorspace {
-  colorspace_out sRGB
-  name Colorspace1
-  xpos -700
-  ypos 256
-  disable {{LinearColorbars}}
  }
  Merge2 {
   inputs 2
@@ -1311,8 +1305,8 @@ push $N4bf91bd0
   xpos -150
   ypos 342
  }
-set N4c3147f0 [stack 0]
-push $N4bd6d2d0
+set N9481660 [stack 0]
+push $N8eea390
  Dot {
   name Dot1
   xpos -226
@@ -1342,7 +1336,7 @@ push $N4bd6d2d0
   xpos -480
   ypos 590
  }
-push $N4c3147f0
+push $N9481660
  Viewer {
   viewerProcess rec709
   input_process false
