@@ -1,5 +1,5 @@
-#! /usr/local/Nuke7.0v4/Nuke7.0 -nx
-version 7.0 v4
+#! /Applications/Nuke6.3v4/NukeX6.3v4.app/../Nuke6.3v4.app/Contents/MacOS/Nuke6.3v4 -nx
+version 6.3 v4
 Gizmo {
  tile_color 0x910c00ff
  note_font Verdana
@@ -7,12 +7,13 @@ Gizmo {
  mapsize {0.15 0.15}
  addUserKnob {20 Slate}
  addUserKnob {1 Project_ctrl l "Project Title"}
- Project_ctrl "The Forest"
+ Project_ctrl ""
  addUserKnob {1 ShotName_ctrl l "Shot Name"}
  ShotName_ctrl "\[lrange \[split \[file rootname \[file tail \[value root.name]]] \"_\"] 0 2 ]"
- addUserKnob {4 Artist_ctrl l Artist M {-- "Gustavo Kasai" "Karthik Kesiraju" "Max Schroeder" "Miguel Ponce" "Richard Greenwood" "Ryan Epp"}}
+ #addUserKnob {4 Artist_ctrl l Artist M {-- "Alan Harrison" "Carlos Guzman" "Claude Theriault" "Geoff Hancock" "Gil Valencia" "Gustavo Kasai" "Juan Rodriguez" "Karthik Kesiraju" "Krishna Ram" "Max Schroeder" "Michael Balzer" "Miguel Ponce" "Richard Greenwood" "Ryan Epp"}}
+ addUserKnob {4 Artist_ctrl l Artist M {-- "Gustavo Kasai" "Karthik Kesiraju" "Max Schroeder" "Miguel Ponce" "Richard Greenwood" }}
  addUserKnob {1 Vendor_ctrl l Vendor -STARTLINE}
- Vendor_ctrl "In House"
+ Vendor_ctrl "GVFX"
  addUserKnob {20 Versions l Version n 1}
  Versions 0
  addUserKnob {1 CompVersion_ctrl l Comp}
@@ -48,7 +49,8 @@ Gizmo {
  thumbnailOffset_ctrl -1
  addUserKnob {26 ""}
  addUserKnob {6 SlugImage_ctrl l "Show Oscar" +STARTLINE}
- addUserKnob {26 ""}
+ SlugImage_ctrl false
+ addUserKnob {26 "" +STARTLINE}
  addUserKnob {26 Author -STARTLINE T "Richard Greenwod"}
 }
  BackdropNode {
@@ -90,7 +92,8 @@ Gizmo {
   xpos -370
   ypos 62
  }
-set N8eea390 [stack 0]
+set N56eb880 [stack 0]
+add_layer {rgba redguard1.glow}
  Shuffle {
   alpha white
   name Shuffle2
@@ -501,9 +504,8 @@ set N8eea390 [stack 0]
    format "1920 1080 0 0 1920 1080 1 HD"
    name ColorBars1
    xpos -480
-   ypos -562
+   ypos -561
   }
-set N910f060 [stack 0]
   Reformat {
    resize distort
    turn true
@@ -706,7 +708,7 @@ set N910f060 [stack 0]
    xpos -700
    ypos -970
   }
-  set C91b8280 [stack 0]
+  set C33acfb10 [stack 0]
   Transform {
    scale {{1/24 i} 1}
    name Transform8
@@ -714,7 +716,7 @@ set N910f060 [stack 0]
    xpos -700
    ypos -928
   }
-  set C91c4420 [stack 0]
+  set C33ad8530 [stack 0]
   Transform {
    scale {1 0.875}
    name Transform4
@@ -722,13 +724,13 @@ set N910f060 [stack 0]
    xpos -700
    ypos -880
   }
-  set C91cf650 [stack 0]
+  set C33adf3c0 [stack 0]
   Reformat {
    name Reformat7
    xpos -700
    ypos -828
   }
-  set C91da8d0 [stack 0]
+  set C33ae6240 [stack 0]
   Text {
    message "Macbeth "
    font "\[value native_font.font]"
@@ -740,6 +742,7 @@ set N910f060 [stack 0]
    rotate -90
    color 0.25
    name Macbeth_Text
+   selected true
    xpos -700
    ypos -802
   }
@@ -919,22 +922,22 @@ set N910f060 [stack 0]
    xpos -150
    ypos -1024
   }
-clone $C91b8280 {
+clone $C33acfb10 {
    xpos -150
    ypos -970
    selected false
   }
-clone $C91c4420 {
+clone $C33ad8530 {
    xpos -150
    ypos -928
    selected false
   }
-clone $C91cf650 {
+clone $C33adf3c0 {
    xpos -150
    ypos -880
    selected false
   }
-clone $C91da8d0 {
+clone $C33ae6240 {
    xpos -150
    ypos -826
    selected false
@@ -1136,22 +1139,22 @@ clone $C91da8d0 {
    xpos 400
    ypos -1024
   }
-clone $C91b8280 {
+clone $C33acfb10 {
    xpos 400
    ypos -970
    selected false
   }
-clone $C91c4420 {
+clone $C33ad8530 {
    xpos 400
    ypos -928
    selected false
   }
-clone $C91cf650 {
+clone $C33adf3c0 {
    xpos 400
    ypos -880
    selected false
   }
-clone $C91da8d0 {
+clone $C33ae6240 {
    xpos 400
    ypos -826
    selected false
@@ -1211,19 +1214,10 @@ clone $C91da8d0 {
    xpos -260
    ypos -370
   }
-push $N910f060
-  Viewer {
-   viewerProcess None
-   input_process false
-   name Viewer1
-   xpos -667
-   ypos -528
-  }
  end_group
  Merge2 {
   inputs 2
   name Merge61
-  selected true
   xpos -700
   ypos 230
  }
@@ -1305,8 +1299,8 @@ push $N910f060
   xpos -150
   ypos 342
  }
-set N9481660 [stack 0]
-push $N8eea390
+set N33cad6c0 [stack 0]
+push $N56eb880
  Dot {
   name Dot1
   xpos -226
@@ -1336,7 +1330,7 @@ push $N8eea390
   xpos -480
   ypos 590
  }
-push $N9481660
+push $N33cad6c0
  Viewer {
   viewerProcess rec709
   input_process false

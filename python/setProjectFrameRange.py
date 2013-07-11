@@ -11,8 +11,8 @@ if nuke.env["gui"]:
     class setProjectFrameRange ( nukescripts.PythonPanel ):
         def __init__( self ):
             #Set Project Handle Defaults
-            handlesInHead = 8
-            handlesInTail = 8
+            handlesInHead = 48
+            handlesInTail = 48
             handlesOutHead = 8
             handlesOutTail = 8
 

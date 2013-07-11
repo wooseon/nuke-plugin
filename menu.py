@@ -10,8 +10,12 @@ m.addCommand("BurnIn", "nuke.createNode('BurnIn')", index=2, icon="slate.png")
 m.addSeparator()
 
 n=m.addMenu("WRITE", icon="Write.png")
-n.addCommand("Write EXR", "pipeline.customWrite('exr')", index=1, icon="Write.png")
 n.addCommand("Write PNG", "pipeline.customWrite('png')", index=1, icon="Write.png")
+#n.addCommand("Write EXR Review", "pipeline.customWrite('exr', 'review')", index=2, icon="Write.png")
+n.addCommand("Write EXR", "pipeline.customWrite('exr')", index=3, icon="Write.png")
+#n.addSeparator()
+#n.addCommand("Write EXR Editorial Alpha", "pipeline.customWrite('exr', 'editorial')", index=4, icon="Write.png")
+#n.addCommand("Write PNG Editorial Alpha", "pipeline.customWrite('png', 'editorial')", index=5, icon="Write.png")
 
 n=m.addMenu("LUT", icon=":qrc/images/Toolbar3DLUT.png")
 
@@ -53,11 +57,20 @@ m=menubar.addMenu("&Edit")
 #Set Project Frame Range
 m.addCommand("&Node/Set Project Frame Range From Node", setProjectFrameRange.callPanel, '^R')
 
+m=menubar.addMenu("&Render")
+#Render Manager - SMEDGE
+#import SmedgeRender
+#m.addSeparator(index=5)
+#m.addCommand("Submit to Smedge", "SmedgeRender.SmedgeRender()", "^F5", index=6)
+
 m = menubar.addMenu("Extra", index=6)
 # Nuke2Maya
 import FromNuke2MayaExporter, FromMaya2NukeImporter
 m.addCommand("Export Camera as fm2n-File", "FromNuke2MayaExporter.FromNuke2MayaExporter()")
 m.addCommand("Import fm2n-File", "FromMaya2NukeImporter.FromMaya2NukeImporter()")
+# MochaToNuke
+import mochaToNuke
+m.addCommand('Mocha To Nuke', 'mochaToNuke.mochaToNuke()')
 #Collect Files Menu Node
 m.addSeparator()
 import collectFiles
@@ -70,3 +83,17 @@ m.addSeparator()
 import showMetaData
 m.addCommand("Show MetaData","nuke.display('showMetaData.showMeta()', nuke.selectedNode(),'MetaData at ' + nuke.selectedNode().name(), 1000)","ctrl+m")
 m.addCommand("Mirror Nodes X Axis", "nuke.tcl('MirrorNodePos x')")
+# PANELS
+# ////////////////////////////////////////////////////////////////////////////////
+#import SearchReplacePanel
+#
+#def addSRPanel():
+#        '''Run the panel script and add it as a tab into the pane it is called from'''
+#        myPanel = SearchReplacePanel.SearchReplacePanel()
+#        return myPanel.addToPane()
+#
+##THIS LINE WILL ADD THE NEW ENTRY TO THE PANE MENU
+#nuke.menu('Pane').addCommand('SearchReplace', addSRPanel)
+#
+##THIS LINE WILL REGISTER THE PANEL SO IT CAN BE RESTORED WITH LAYOUTS
+#nukescripts.registerPanel('com.ohufx.SearchReplace', addSRPanel)

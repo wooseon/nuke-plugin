@@ -10,6 +10,7 @@ nuke.pluginAddPath('./lut')
 
 import os, nukescripts, platform
 import pipeline
+import sendToAvconv
 
 # SET KNOB DEFAULTS
 # ////////////////////////////////////////////////////////////////////////////////
@@ -17,6 +18,7 @@ import pipeline
 # WRITE NODE
 # use this instead of nuke.addBeforeRender so that artists can remove it locally if needed
 nuke.knobDefault('Write.beforeRender', 'pipeline.createWriteDir()')
+nuke.knobDefault('Write.afterRender', 'sendToAvconv.sendToAvconv()')
 
 # ROOT
 nuke.knobDefault('Root.project_directory', '[python {nuke.script_directory()}]/../')
@@ -33,12 +35,10 @@ import reformat_presets
 reformat_presets.nodePresetReformat()
 
 # LUTs
-#TF
-#nuke.knobDefault('Viewer.viewerProcess', '')
-#nuke.knobDefault('monitorLut', '')
-#nuke.knobDefault('logLut', '')
-#nuke.knobDefault('int8Lut', '')
-#nuke.knobDefault('int16Lut', '')
+#Example
+#nuke.knobDefault('Viewer.viewerProcess', 'rec709')
+#nuke.knobDefault('monitorLut', 'rec709')
+#nuke.knobDefault('floatLut', 'rec709')
 
 # OTHER
 # ////////////////////////////////////////////////////////////////////////////////
