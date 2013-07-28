@@ -1,0 +1,27 @@
+#! /Applications/Nuke7.0v8/NukeX7.0v8.app/../Nuke7.0v8.app/Contents/MacOS/Nuke7.0v8 -nx
+version 7.0 v8
+Gizmo {
+ addUserKnob {20 Info}
+ addUserKnob {26 ID T "v1 2013-07-21"}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 13
+  ypos -77
+ }
+ Vectorfield {
+  vfield_file /Volumes/The_Forest/assets/Nuke_Plugin/lut/DFC/FOREST_SHOW_LUT_v1_REC709.2013.07.21.cube
+  version 3
+  file_type cube
+  colorspaceIn Cineon
+  name Vectorfield1
+  xpos 13
+  ypos -37
+ }
+ Output {
+  name Output1
+  xpos 13
+  ypos 63
+ }
+end_group
