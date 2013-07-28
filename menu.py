@@ -18,6 +18,7 @@ n.addCommand("Write EXR", "pipeline.customWrite('exr')", index=3, icon="Write.pn
 #n.addCommand("Write PNG Editorial Alpha", "pipeline.customWrite('png', 'editorial')", index=5, icon="Write.png")
 
 n=m.addMenu("LUT", icon=":qrc/images/Toolbar3DLUT.png")
+n.addCommand("BAKE v1_REC709", "nuke.createNode('BAKE-DFC_v01_REC709.gizmo')" )
 
 n=m.addMenu("Colour", icon=":qrc/images/ToolbarColor.png")
 n.addCommand("Despill Madness", "nuke.createNode('DespillMadness')",  icon="Sphere.png")

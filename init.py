@@ -18,7 +18,6 @@ import sendToAvconv
 # WRITE NODE
 # use this instead of nuke.addBeforeRender so that artists can remove it locally if needed
 nuke.knobDefault('Write.beforeRender', 'pipeline.createWriteDir()')
-nuke.knobDefault('Write.afterRender', 'sendToAvconv.sendToAvconv()')
 
 # ROOT
 nuke.knobDefault('Root.project_directory', '[python {nuke.script_directory()}]/../')
@@ -39,9 +38,8 @@ reformat_presets.nodePresetReformat()
 #nuke.knobDefault('Viewer.viewerProcess', 'rec709')
 #nuke.knobDefault('monitorLut', 'rec709')
 #nuke.knobDefault('floatLut', 'rec709')
+nuke.ViewerProcess.register("FOR v1 REC709", nuke.Node, ("ViewerProcess-DFC_v01_REC709.gizmo", ""))
+#nuke.ViewerProcess.register("Blur", nuke.createNode, ("Blur", "size 10"))
 
 # OTHER
 # ////////////////////////////////////////////////////////////////////////////////
-
-#Goofy Titles for untitled scripts
-#nuke.untitled = nukescripts.goofy_title()
