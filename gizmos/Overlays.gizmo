@@ -5,7 +5,7 @@ Gizmo {
  note_font Verdana
  note_font_color 0xff
  mapsize {0.15 0.15}
- addUserKnob {20 BurnIn}
+ addUserKnob {20 Overlays}
  addUserKnob {26 Meta}
  addUserKnob {1 MetaFilename_ctrl l Filename t "Defaults to the nuke script name."}
  MetaFilename_ctrl "\[file rootname \[file tail \[value root.name]]]"
@@ -33,7 +33,7 @@ Gizmo {
  SlateVisibleFrame_ctrl 1040
  addUserKnob {20 Setup}
  addUserKnob {2 Font_ctrl l Font}
- Font_ctrl "\[getenv HOME]/.nuke/fonts/FreeSans.ttf"
+ Font_ctrl "\[getenv NUKE_PATH]/.nuke/fonts/FreeSans.ttf"
  addUserKnob {26 ""}
  addUserKnob {26 Author -STARTLINE T "Richard Greenwood"}
 }
@@ -57,7 +57,7 @@ Gizmo {
   xpos 874
   ypos 1098
  }
-set N5748700 [stack 0]
+set N6ae9860 [stack 0]
  Dot {
   name Dot3
   xpos 984
@@ -115,29 +115,29 @@ set N5748700 [stack 0]
   xpos -446
   ypos 928
  }
-set N57e8b60 [stack 0]
-push $N57e8b60
+set N6b30520 [stack 0]
+push $N6b30520
  Invert {
   unpremult rgba.alpha
   name Invert2
   xpos -370
   ypos 918
  }
- set C57ecdb0 [stack 0]
+ set C6b34f20 [stack 0]
  Dilate {
   size 2
   name Dilate2
   xpos -370
   ypos 966
  }
- set C57f7220 [stack 0]
+ set C6b3f240 [stack 0]
  Blur {
   size 4
   name Blur3
   xpos -370
   ypos 1014
  }
- set C5800530 [stack 0]
+ set C6b486a0 [stack 0]
  Merge2 {
   inputs 2
   name Merge5
@@ -446,8 +446,8 @@ push $N57e8b60
   ypos 684
   disable {{!parent.LetterboxToggle_ctrl}}
  }
- set C575bb70 [stack 0]
-set N5997c00 [stack 0]
+ set C6ce06f0 [stack 0]
+set N6ce06f0 [stack 0]
  Shuffle {
   alpha white
   name Shuffle1
@@ -468,7 +468,7 @@ set N5997c00 [stack 0]
   ypos 758
   disable {{!parent.RulersCentreToggle_ctrl}}
  }
-push $N5997c00
+push $N6ce06f0
  Grid {
   inputs 1+1
   cliptype none
@@ -490,19 +490,19 @@ push $N5997c00
   xpos 104
   ypos 928
  }
-set N59d3b40 [stack 0]
-push $N59d3b40
-clone $C57ecdb0 {
+set N6d29ac0 [stack 0]
+push $N6d29ac0
+clone $C6b34f20 {
   xpos 180
   ypos 918
   selected false
  }
-clone $C57f7220 {
+clone $C6b3f240 {
   xpos 180
   ypos 966
   selected false
  }
-clone $C5800530 {
+clone $C6b486a0 {
   xpos 180
   ypos 1014
   selected false
@@ -537,7 +537,7 @@ clone $C5800530 {
   xpos 510
   ypos 735
  }
-clone $C575bb70 {
+clone $C6ce06f0 {
   xpos 510
   ypos 830
   selected false
@@ -583,7 +583,7 @@ clone $C575bb70 {
   xpos 654
   ypos 1194
  }
-push $N5748700
+push $N6ae9860
  Shuffle {
   alpha black
   name Shuffle2
