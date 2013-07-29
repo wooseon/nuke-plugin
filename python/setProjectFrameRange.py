@@ -15,7 +15,7 @@ if nuke.env["gui"]:
             handlesInTail = 48
             handlesOutHead = 8
             handlesOutTail = 8
-            headOffset = 1000
+            headOffset = 1001
 
             #create dialogue box
             nukescripts.PythonPanel.__init__( self, "Set Project Frame Range" )

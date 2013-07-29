@@ -10,7 +10,6 @@ nuke.pluginAddPath('./lut')
 
 import os, nukescripts, platform
 import pipeline
-import sendToAvconv
 
 # SET KNOB DEFAULTS
 # ////////////////////////////////////////////////////////////////////////////////

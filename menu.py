@@ -6,7 +6,7 @@ import nodeCount
 menubar=nuke.menu("Nodes")
 m=menubar.addMenu("Tools")
 m.addCommand("Slate", "nuke.createNode('Slate')", index=1, icon="slate.png")
-m.addCommand("BurnIn", "nuke.createNode('BurnIn')", index=2, icon="slate.png")
+m.addCommand("Overlays", "nuke.createNode('Overlays')", index=2, icon="slate.png")
 m.addSeparator()
 
 n=m.addMenu("WRITE", icon="Write.png")
@@ -84,17 +84,3 @@ m.addSeparator()
 import showMetaData
 m.addCommand("Show MetaData","nuke.display('showMetaData.showMeta()', nuke.selectedNode(),'MetaData at ' + nuke.selectedNode().name(), 1000)","ctrl+m")
 m.addCommand("Mirror Nodes X Axis", "nuke.tcl('MirrorNodePos x')")
-# PANELS
-# ////////////////////////////////////////////////////////////////////////////////
-#import SearchReplacePanel
-#
-#def addSRPanel():
-#        '''Run the panel script and add it as a tab into the pane it is called from'''
-#        myPanel = SearchReplacePanel.SearchReplacePanel()
-#        return myPanel.addToPane()
-#
-##THIS LINE WILL ADD THE NEW ENTRY TO THE PANE MENU
-#nuke.menu('Pane').addCommand('SearchReplace', addSRPanel)
-#
-##THIS LINE WILL REGISTER THE PANEL SO IT CAN BE RESTORED WITH LAYOUTS
-#nukescripts.registerPanel('com.ohufx.SearchReplace', addSRPanel)
