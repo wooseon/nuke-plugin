@@ -1,0 +1,30 @@
+#! /usr/local/Nuke7.0v8/Nuke7.0 -nx
+version 7.0 v8
+Gizmo {
+ addUserKnob {20 Info}
+ addUserKnob {26 Description l "" +STARTLINE T "Author: DFC; Version: 1; Date: 2013-07-27"}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 13
+  ypos -77
+ }
+ Vectorfield {
+  vfield_file "\[getenv NUKE_PATH]/lut/DFC/FOREST_LUT_stage_look_v1_srgb.2013.07.27.3dl"
+  version 13
+  file_type 3dl
+  colorspaceIn Cineon
+  output_bitdepth_id auto
+  normalize_output false
+  format_3dl_id auto
+  name Vectorfield1
+  xpos 13
+  ypos -34
+ }
+ Output {
+  name Output1
+  xpos 13
+  ypos 63
+ }
+end_group

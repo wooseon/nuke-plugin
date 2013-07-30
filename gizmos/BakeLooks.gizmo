@@ -1,0 +1,76 @@
+#! /usr/local/Nuke7.0v8/Nuke7.0 -nx
+version 7.0 v8
+Gizmo {
+ label "\[value lut]"
+ addUserKnob {20 BakeLooks}
+ addUserKnob {4 lut l Look M {Forest Mountain Stage "" "" "" ""}}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {26 Description l "" +STARTLINE T "Author: DFC"}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -40
+  ypos -130
+ }
+ Dot {
+  name Dot1
+  xpos -6
+  ypos -80
+ }
+set N4d95540 [stack 0]
+ Vectorfield {
+  vfield_file "\[getenv NUKE_PATH]/lut/DFC/FOREST_LUT_stage_look_v1_srgb.2013.07.27.3dl"
+  version 14
+  file_type 3dl
+  colorspaceIn Cineon
+  colorspaceOut sRGB
+  output_bitdepth_id auto
+  normalize_output false
+  format_3dl_id auto
+  name Stage
+  selected true
+  xpos 70
+  ypos -34
+ }
+push $N4d95540
+ Vectorfield {
+  vfield_file "\[getenv NUKE_PATH]/lut/DFC/FOREST_LUT_mountain_look_v1_srgb.2013.07.27.3dl"
+  version 14
+  file_type 3dl
+  colorspaceIn Cineon
+  colorspaceOut sRGB
+  output_bitdepth_id auto
+  normalize_output false
+  format_3dl_id auto
+  name Mountain
+  xpos -40
+  ypos -34
+ }
+push $N4d95540
+ Vectorfield {
+  vfield_file "\[getenv NUKE_PATH]/lut/DFC/FOREST_LUT_forest_look_v1_srgb.2013.07.27.3dl"
+  version 13
+  file_type 3dl
+  colorspaceIn Cineon
+  colorspaceOut sRGB
+  output_bitdepth_id auto
+  normalize_output false
+  format_3dl_id auto
+  name Forest
+  xpos -150
+  ypos -34
+ }
+ Switch {
+  inputs 3
+  which {{parent.lut x47 0}}
+  name Switch1
+  xpos -40
+  ypos 14
+ }
+ Output {
+  name Output1
+  xpos -40
+  ypos 62
+ }
+end_group

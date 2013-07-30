@@ -37,7 +37,9 @@ reformat_presets.nodePresetReformat()
 #nuke.knobDefault('Viewer.viewerProcess', 'rec709')
 #nuke.knobDefault('monitorLut', 'rec709')
 #nuke.knobDefault('floatLut', 'rec709')
-nuke.ViewerProcess.register("FOR v1 REC709", nuke.Node, ("ViewerProcess-DFC_v01_REC709.gizmo", ""))
+nuke.ViewerProcess.register("Forest", nuke.Node, ("viewerprocess_forest_v1.gizmo", ""))
+nuke.ViewerProcess.register("Mountain", nuke.Node, ("viewerprocess_mountain_v1.gizmo", ""))
+nuke.ViewerProcess.register("Stage", nuke.Node, ("viewerprocess_stage_v1.gizmo", ""))
 #nuke.ViewerProcess.register("Blur", nuke.createNode, ("Blur", "size 10"))
 
 # OTHER

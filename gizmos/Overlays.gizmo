@@ -12,6 +12,8 @@ Gizmo {
  addUserKnob {1 MetaDescription_ctrl l Description t "Add short info about the shot. This text is centred."}
  addUserKnob {6 MetaToggle_ctrl l "Show Meta" t "Check to display shot meta inforamtion." +STARTLINE}
  MetaToggle_ctrl true
+ addUserKnob {4 MetaPositionY_ctrl l Position -STARTLINE M {bottom top "title safe" ""}}
+ MetaPositionY_ctrl "title safe"
  addUserKnob {26 Rulers}
  addUserKnob {3 RulersDivisions_ctrl l Divisions}
  RulersDivisions_ctrl 12
@@ -33,19 +35,10 @@ Gizmo {
  SlateVisibleFrame_ctrl 1040
  addUserKnob {20 Setup}
  addUserKnob {2 Font_ctrl l Font}
- Font_ctrl "\[getenv NUKE_PATH]/.nuke/fonts/FreeSans.ttf"
+ Font_ctrl "\[getenv NUKE_PATH]/fonts/FreeSans.ttf"
  addUserKnob {26 ""}
  addUserKnob {26 Author -STARTLINE T "Richard Greenwood"}
 }
- NoOp {
-  inputs 0
-  name Border
-  xpos -260
-  ypos 756
-  addUserKnob {20 User}
-  addUserKnob {3 BorderSize_ctrl l Size}
-  BorderSize_ctrl 20
- }
  Input {
   inputs 0
   name InputBG
@@ -57,7 +50,7 @@ Gizmo {
   xpos 874
   ypos 1098
  }
-set N6ae9860 [stack 0]
+set N5f6bf60 [stack 0]
  Dot {
   name Dot3
   xpos 984
@@ -73,7 +66,7 @@ set N6ae9860 [stack 0]
   channels rgb
   name Constant1
   xpos -480
-  ypos 589
+  ypos 399
  }
  Text {
   message "\[value MetaFilename_ctrl]"
@@ -84,7 +77,7 @@ set N6ae9860 [stack 0]
   box {{parent.Border.BorderSize_ctrl} {parent.Border.BorderSize_ctrl+parent.Filename.size} {format.width-parent.Border.BorderSize_ctrl} {parent.Border.BorderSize_ctrl}}
   name Filename
   xpos -480
-  ypos 828
+  ypos 638
  }
  Text {
   message "\[value MetaDescription_ctrl]"
@@ -96,7 +89,7 @@ set N6ae9860 [stack 0]
   center {960 540}
   name Description
   xpos -480
-  ypos 852
+  ypos 662
  }
  Text {
   message "\[format %.3d \[expr \[frame]]]"
@@ -108,63 +101,98 @@ set N6ae9860 [stack 0]
   box {{parent.Filename.box} {parent.Filename.box} {parent.Filename.box} {parent.Filename.box}}
   name Frame
   xpos -480
-  ypos 876
+  ypos 686
  }
  Dot {
   name Dot5
   xpos -446
-  ypos 928
+  ypos 738
  }
-set N6b30520 [stack 0]
-push $N6b30520
+set N5fb2c30 [stack 0]
+push $N5fb2c30
  Invert {
   unpremult rgba.alpha
   name Invert2
   xpos -370
-  ypos 918
+  ypos 728
  }
- set C6b34f20 [stack 0]
+ set C5fb7630 [stack 0]
  Dilate {
   size 2
   name Dilate2
   xpos -370
-  ypos 966
+  ypos 776
  }
- set C6b3f240 [stack 0]
+ set C5fc1950 [stack 0]
  Blur {
   size 4
   name Blur3
   xpos -370
-  ypos 1014
+  ypos 824
  }
- set C6b486a0 [stack 0]
+ set C5fcadb0 [stack 0]
  Merge2 {
   inputs 2
   name Merge5
   xpos -480
-  ypos 1020
+  ypos 830
+ }
+ Dot {
+  name Dot10
+  xpos -446
+  ypos 906
+ }
+set N9392df0 [stack 0]
+ Transform {
+  translate {0 {"(format.height-format.width/\[value LetterboxFormat_ctrl])/2"}}
+  center {960 540}
+  name meta_position_title_safe
+  xpos -370
+  ypos 950
+ }
+push $N9392df0
+ Transform {
+  translate {0 {format.height-2*parent.Border.BorderSize_ctrl-Filename.size}}
+  center {960 30}
+  name meta_position_top
+  xpos -480
+  ypos 950
+ }
+push $N9392df0
+ Dot {
+  name Dot9
+  xpos -556
+  ypos 954
+ }
+ Switch {
+  inputs 3
+  which {{MetaPositionY_ctrl}}
+  name Switch1
+  selected true
+  xpos -480
+  ypos 998
  }
  Reformat {
   name Reformat3
   xpos -480
-  ypos 1092
+  ypos 1094
  }
  Multiply {
   name Multiply3
   xpos -480
-  ypos 1134
+  ypos 1136
  }
  Dot {
   name Dot7
   xpos -446
-  ypos 1288
+  ypos 1290
  }
  Constant {
   inputs 0
   channels rgb
   name Constant3
   xpos -40
-  ypos 157
+  ypos -33
  }
  Text {
   message "a\n"
@@ -177,7 +205,7 @@ push $N6b30520
   center {960 540}
   name axis_label_x_0
   xpos -40
-  ypos 252
+  ypos 62
  }
  Text {
   message b
@@ -190,7 +218,7 @@ push $N6b30520
   center {960 540}
   name axis_label_x_1
   xpos -40
-  ypos 276
+  ypos 86
  }
  Text {
   message c
@@ -203,7 +231,7 @@ push $N6b30520
   center {960 540}
   name axis_label_x_2
   xpos -40
-  ypos 300
+  ypos 110
  }
  Text {
   message d
@@ -216,7 +244,7 @@ push $N6b30520
   center {960 540}
   name axis_label_x_3
   xpos -40
-  ypos 324
+  ypos 134
  }
  Text {
   message e
@@ -229,7 +257,7 @@ push $N6b30520
   center {960 540}
   name axis_label_x_4
   xpos -40
-  ypos 348
+  ypos 158
  }
  Text {
   message f
@@ -242,7 +270,7 @@ push $N6b30520
   center {960 540}
   name axis_label_x_5
   xpos -40
-  ypos 372
+  ypos 182
  }
  Text {
   message g
@@ -255,7 +283,7 @@ push $N6b30520
   center {960 540}
   name axis_label_x_6
   xpos -40
-  ypos 396
+  ypos 206
  }
  Text {
   message h
@@ -268,7 +296,7 @@ push $N6b30520
   center {960 540}
   name axis_label_x_7
   xpos -40
-  ypos 420
+  ypos 230
  }
  Text {
   message i
@@ -281,7 +309,7 @@ push $N6b30520
   center {960 540}
   name axis_label_x_8
   xpos -40
-  ypos 444
+  ypos 254
  }
  Text {
   message j
@@ -294,7 +322,7 @@ push $N6b30520
   center {960 540}
   name axis_label_x_9
   xpos -40
-  ypos 468
+  ypos 278
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -307,7 +335,7 @@ push $N6b30520
   center {960 540}
   name axis_label_y_0
   xpos -40
-  ypos 516
+  ypos 326
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -320,7 +348,7 @@ push $N6b30520
   center {960 540}
   name axis_label_y_1
   xpos -40
-  ypos 540
+  ypos 350
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -333,7 +361,7 @@ push $N6b30520
   center {960 540}
   name axis_label_y_2
   xpos -40
-  ypos 564
+  ypos 374
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -346,7 +374,7 @@ push $N6b30520
   center {960 540}
   name axis_label_y_3
   xpos -40
-  ypos 588
+  ypos 398
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -359,7 +387,7 @@ push $N6b30520
   center {960 540}
   name axis_label_y_4
   xpos -40
-  ypos 612
+  ypos 422
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -372,7 +400,7 @@ push $N6b30520
   center {960 540}
   name axis_label_y_5
   xpos -40
-  ypos 636
+  ypos 446
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -385,7 +413,7 @@ push $N6b30520
   center {960 540}
   name axis_label_y_6
   xpos -40
-  ypos 660
+  ypos 470
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -398,7 +426,7 @@ push $N6b30520
   center {960 540}
   name axis_label_y_7
   xpos -40
-  ypos 684
+  ypos 494
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -411,7 +439,7 @@ push $N6b30520
   center {960 540}
   name axis_label_y_8
   xpos -40
-  ypos 708
+  ypos 518
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -424,51 +452,51 @@ push $N6b30520
   center {960 540}
   name axis_label_y_9
   xpos -40
-  ypos 732
+  ypos 542
  }
  Dot {
   name Dot11
   xpos -6
-  ypos 832
+  ypos 642
  }
  Constant {
   inputs 0
   channels rgb
   name Constant7
   xpos 70
-  ypos 589
+  ypos 399
  }
  Reformat {
   type scale
   scale {1 {"format.width/format.height/\[value LetterboxFormat_ctrl]"}}
   name Reformat4
   xpos 70
-  ypos 684
+  ypos 494
   disable {{!parent.LetterboxToggle_ctrl}}
  }
- set C6ce06f0 [stack 0]
-set N6ce06f0 [stack 0]
+ set C6162df0 [stack 0]
+set N6162df0 [stack 0]
  Shuffle {
   alpha white
   name Shuffle1
   xpos 180
-  ypos 684
+  ypos 494
  }
  Crop {
   box {{parent.Border.BorderSize_ctrl} {parent.Border.BorderSize_ctrl} {format.width-parent.Border.BorderSize_ctrl} {format.height-parent.Border.BorderSize_ctrl}}
   name Crop1
   xpos 180
-  ypos 710
+  ypos 518
  }
  Radial {
   area {{format.width/2-parent.Border.BorderSize_ctrl} {format.height/2-parent.Border.BorderSize_ctrl} {format.width/2+parent.Border.BorderSize_ctrl} {format.height/2+parent.Border.BorderSize_ctrl}}
   color 0
   name Radial1
   xpos 180
-  ypos 758
+  ypos 566
   disable {{!parent.RulersCentreToggle_ctrl}}
  }
-push $N6ce06f0
+push $N6162df0
  Grid {
   inputs 1+1
   cliptype none
@@ -476,95 +504,95 @@ push $N6ce06f0
   number {{RulersDivisions_ctrl}}
   name Grid3
   xpos 70
-  ypos 756
+  ypos 566
  }
  Merge2 {
   inputs 2
   name Merge1
   xpos 70
-  ypos 828
+  ypos 638
   disable true
  }
  Dot {
   name Dot4
   xpos 104
-  ypos 928
+  ypos 738
  }
-set N6d29ac0 [stack 0]
-push $N6d29ac0
-clone $C6b34f20 {
+set N61ac1d0 [stack 0]
+push $N61ac1d0
+clone $C5fb7630 {
   xpos 180
-  ypos 918
+  ypos 728
   selected false
  }
-clone $C6b3f240 {
+clone $C5fc1950 {
   xpos 180
-  ypos 966
+  ypos 776
   selected false
  }
-clone $C6b486a0 {
+clone $C5fcadb0 {
   xpos 180
-  ypos 1014
+  ypos 824
   selected false
  }
  Merge2 {
   inputs 2
   name Merge6
   xpos 70
-  ypos 1020
+  ypos 830
  }
  Reformat {
   black_outside true
   name Reformat2
   xpos 70
-  ypos 1092
+  ypos 1094
  }
  Multiply {
   value {{parent.RulersOpacity_ctrl}}
   name Multiply2
   xpos 70
-  ypos 1134
+  ypos 1136
  }
  Dot {
   name Dot8
   xpos 104
-  ypos 1240
+  ypos 1242
  }
  Constant {
   inputs 0
   color 1
   name Constant4
   xpos 510
-  ypos 735
+  ypos 543
  }
-clone $C6ce06f0 {
+clone $C6162df0 {
   xpos 510
-  ypos 830
+  ypos 638
   selected false
  }
  Reformat {
   black_outside true
   name Reformat1
   xpos 510
-  ypos 854
+  ypos 662
  }
  Invert {
   name Invert3
   xpos 510
-  ypos 872
+  ypos 680
  }
  Constant {
   inputs 0
   channels rgb
   name Constant6
   xpos 620
-  ypos 591
+  ypos 399
  }
  ShuffleCopy {
   inputs 2
   name ShuffleCopy2
   xpos 620
-  ypos 878
+  ypos 686
  }
  Reformat {
   black_outside true
@@ -583,7 +611,7 @@ clone $C6ce06f0 {
   xpos 654
   ypos 1194
  }
-push $N6ae9860
+push $N5f6bf60
  Shuffle {
   alpha black
   name Shuffle2
@@ -592,21 +620,21 @@ push $N6ae9860
  }
  Merge2 {
   inputs 2
-  mix {{parent.LetterboxToggle_ctrl}}
+  mix {{"\[value LetterboxToggle_ctrl]==1 && \[value SlateVisibleFrame_ctrl]<\[frame]"}}
   name Merge4
   xpos 840
   ypos 1190
  }
  Merge2 {
   inputs 2
-  mix {{parent.RulersToggle_ctrl}}
+  mix {{"\[value RulersToggle_ctrl]==1 && \[value SlateVisibleFrame_ctrl]<\[frame]"}}
   name Merge2
   xpos 840
   ypos 1238
  }
  Merge2 {
   inputs 2
-  mix {{parent.MetaToggle_ctrl}}
+  mix {{"\[value MetaToggle_ctrl]==1 && \[value SlateVisibleFrame_ctrl]<\[frame]"}}
   name Merge3
   xpos 840
   ypos 1286
@@ -626,5 +654,14 @@ push $N6ae9860
   name Output1
   xpos 840
   ypos 1430
+ }
+ NoOp {
+  inputs 0
+  name Border
+  xpos -260
+  ypos 566
+  addUserKnob {20 User}
+  addUserKnob {3 BorderSize_ctrl l Size}
+  BorderSize_ctrl 20
  }
 end_group
