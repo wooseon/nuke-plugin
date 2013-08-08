@@ -7,6 +7,8 @@ menubar=nuke.menu("Nodes")
 m=menubar.addMenu("Tools")
 m.addCommand("Slate", "nuke.createNode('Slate')", index=1, icon="slate.png")
 m.addCommand("Overlays", "nuke.createNode('Overlays')", index=2, icon="slate.png")
+m.addCommand("Random", "nuke.createNode('Random')", index=3)
+
 m.addSeparator()
 
 n=m.addMenu("WRITE", icon="Write.png")
