@@ -99,17 +99,18 @@ def createWriteDir():
 		pass
 
 # FILENAME FIX
-# Arctic Air
+# LionsBay
+def filenameFix(filename):
+	if nuke.env['WIN32']:
+		filename = filename.replace( "/Volumes/The_Forest/", "Z:/" )
+	elif nuke.env['MACOS']:
+		filename = filename.replace( "Z:/", "/Volumes/The_Forest/" )
+	elif nuke.env['LINUX']:
+		filename = filename.replace("Z:/", "/media/The_Forest/")
+	return filename
 
-#def filenameFix(filename):
-#	if nuke.env['WIN32']:
-#		filename = filename.replace( "/Volumes/Projects/", "Z:/" ).replace("/media/Projects/", "Z:/").replace( "/Volumes/Wilde/", "Y:/" ).replace("/media/Wilde/", "Y:/").replace( "/Volumes/Elements/", "X:/" ).replace("/media/Elements/", "X:/")
-#	elif nuke.env['MACOS']:
-#		filename = filename.replace( "Z:/", "/Volumes/Projects/" ).replace( "/media/Projects/", "/Volumes/Projects/" ).replace( "Y:/", "/Volumes/Wilde/" ).replace( "/media/Wilde/", "/Volumes/Wilde/" ).replace( "X:/", "/Volumes/Elements/" ).replace( "/media/Elements/", "/Volumes/Elements/" )
-#	elif nuke.env['LINUX']:
-#		filename = filename.replace("Z:/", "/media/Projects/").replace("/Volumes/Projects/", "/media/Projects/").replace("Y:/", "/media/Wilde/").replace("/Volumes/Wilde/", "/media/Wilde/").replace("X:/", "/media/Elements/").replace("/Volumes/Elements/", "/media/Elements/")
-#	return filename
-
+nuke.addFilenameFilter(filenameFix)
+	
 # ADD FAVOURITE DIR
 # Arctic Air
 

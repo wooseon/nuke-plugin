@@ -7,8 +7,6 @@ menubar=nuke.menu("Nodes")
 m=menubar.addMenu("Tools")
 m.addCommand("Slate", "nuke.createNode('Slate')", index=1, icon="slate.png")
 m.addCommand("Overlays", "nuke.createNode('Overlays')", index=2, icon="slate.png")
-m.addCommand("Random", "nuke.createNode('Random')", index=3)
-
 m.addSeparator()
 
 n=m.addMenu("WRITE", icon="Write.png")
@@ -46,6 +44,8 @@ n.addCommand("GrainControl", "nuke.createNode('GrainControl')", index=3, icon="g
 n=m.addMenu("Transform", icon=":qrc/images/ToolbarTransform.png")
 n.addCommand("SmartPin", "nuke.createNode('SmartPin')", icon="ConerPin.png")
 
+n=m.addMenu("Generate")
+n.addCommand("Random", "nuke.createNode('Random')", index=3, icon="smokey-ryan.png")
 
 # MENUS
 # ////////////////////////////////////////////////////////////////////////////////
@@ -65,6 +65,8 @@ m=menubar.addMenu("&Render")
 #import SmedgeRender
 #m.addSeparator(index=5)
 #m.addCommand("Submit to Smedge", "SmedgeRender.SmedgeRender()", "^F5", index=6)
+m.addSeparator(index=5)
+m.addCommand("Submit To Deadline", "nuke.tcl(\"SubmitToDeadline\")", "")
 
 m = menubar.addMenu("Extra", index=6)
 # Nuke2Maya

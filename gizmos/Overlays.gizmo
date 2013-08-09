@@ -1,4 +1,4 @@
-#! /usr/local/Nuke7.0v8/Nuke7.0 -nx
+#! /Applications/Nuke7.0v8/NukeX7.0v8.app/../Nuke7.0v8.app/Contents/MacOS/Nuke7.0v8 -nx
 version 7.0 v8
 Gizmo {
  tile_color 0x910c00ff
@@ -50,7 +50,7 @@ Gizmo {
   xpos 874
   ypos 1098
  }
-set N5f6bf60 [stack 0]
+set N1e8173e0 [stack 0]
  Dot {
   name Dot3
   xpos 984
@@ -94,7 +94,7 @@ set N5f6bf60 [stack 0]
  Text {
   message "\[format %.3d \[expr \[frame]]]"
   font "\[value Font_ctrl]"
-  size {{parent.Filename.size.main}}
+  size {{parent.Filename.size}}
   xjustify right
   yjustify center
   Transform 1
@@ -108,29 +108,29 @@ set N5f6bf60 [stack 0]
   xpos -446
   ypos 738
  }
-set N5fb2c30 [stack 0]
-push $N5fb2c30
+set N1e852770 [stack 0]
+push $N1e852770
  Invert {
   unpremult rgba.alpha
   name Invert2
   xpos -370
   ypos 728
  }
- set C5fb7630 [stack 0]
+ set C1e856220 [stack 0]
  Dilate {
   size 2
   name Dilate2
   xpos -370
   ypos 776
  }
- set C5fc1950 [stack 0]
+ set C1e85ec10 [stack 0]
  Blur {
   size 4
   name Blur3
   xpos -370
   ypos 824
  }
- set C5fcadb0 [stack 0]
+ set C1e866e80 [stack 0]
  Merge2 {
   inputs 2
   name Merge5
@@ -142,7 +142,7 @@ push $N5fb2c30
   xpos -446
   ypos 906
  }
-set N9392df0 [stack 0]
+set N1e87b7e0 [stack 0]
  Transform {
   translate {0 {"(format.height-format.width/\[value LetterboxFormat_ctrl])/2"}}
   center {960 540}
@@ -150,7 +150,7 @@ set N9392df0 [stack 0]
   xpos -370
   ypos 950
  }
-push $N9392df0
+push $N1e87b7e0
  Transform {
   translate {0 {format.height-2*parent.Border.BorderSize_ctrl-Filename.size}}
   center {960 30}
@@ -158,7 +158,7 @@ push $N9392df0
   xpos -480
   ypos 950
  }
-push $N9392df0
+push $N1e87b7e0
  Dot {
   name Dot9
   xpos -556
@@ -168,7 +168,6 @@ push $N9392df0
   inputs 3
   which {{MetaPositionY_ctrl}}
   name Switch1
-  selected true
   xpos -480
   ypos 998
  }
@@ -474,8 +473,8 @@ push $N9392df0
   ypos 494
   disable {{!parent.LetterboxToggle_ctrl}}
  }
- set C6162df0 [stack 0]
-set N6162df0 [stack 0]
+ set C1d6cd450 [stack 0]
+set N1d6cd450 [stack 0]
  Shuffle {
   alpha white
   name Shuffle1
@@ -496,7 +495,7 @@ set N6162df0 [stack 0]
   ypos 566
   disable {{!parent.RulersCentreToggle_ctrl}}
  }
-push $N6162df0
+push $N1d6cd450
  Grid {
   inputs 1+1
   cliptype none
@@ -518,19 +517,19 @@ push $N6162df0
   xpos 104
   ypos 738
  }
-set N61ac1d0 [stack 0]
-push $N61ac1d0
-clone $C5fb7630 {
+set N1ea0fc40 [stack 0]
+push $N1ea0fc40
+clone $C1e856220 {
   xpos 180
   ypos 728
   selected false
  }
-clone $C5fc1950 {
+clone $C1e85ec10 {
   xpos 180
   ypos 776
   selected false
  }
-clone $C5fcadb0 {
+clone $C1e866e80 {
   xpos 180
   ypos 824
   selected false
@@ -565,7 +564,7 @@ clone $C5fcadb0 {
   xpos 510
   ypos 543
  }
-clone $C6162df0 {
+clone $C1d6cd450 {
   xpos 510
   ypos 638
   selected false
@@ -611,7 +610,7 @@ clone $C6162df0 {
   xpos 654
   ypos 1194
  }
-push $N5f6bf60
+push $N1e8173e0
  Shuffle {
   alpha black
   name Shuffle2
