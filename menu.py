@@ -43,10 +43,17 @@ n.addCommand("GrainControl", "nuke.createNode('GrainControl')", index=3, icon="g
 
 n=m.addMenu("Transform", icon=":qrc/images/ToolbarTransform.png")
 n.addCommand("SmartPin", "nuke.createNode('SmartPin')", icon="ConerPin.png")
+<<<<<<< HEAD
 
 n=m.addMenu("Generate")
 n.addCommand("Random", "nuke.createNode('Random')", index=3, icon="smokey-ryan.png")
 
+=======
+
+n=m.addMenu("Generate")
+n.addCommand("Random", "nuke.createNode('Random')", index=3, icon="smokey-ryan.png")
+
+>>>>>>> 8c0d042a884349897e667f3667dfe3bd613ad92f
 # MENUS
 # ////////////////////////////////////////////////////////////////////////////////
 menubar=nuke.menu("Nuke")
