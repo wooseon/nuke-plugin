@@ -43,25 +43,16 @@ n.addCommand("GrainControl", "nuke.createNode('GrainControl')", index=3, icon="g
 
 n=m.addMenu("Transform", icon=":qrc/images/ToolbarTransform.png")
 n.addCommand("SmartPin", "nuke.createNode('SmartPin')", icon="ConerPin.png")
-<<<<<<< HEAD
 
 n=m.addMenu("Generate")
 n.addCommand("Random", "nuke.createNode('Random')", index=3, icon="smokey-ryan.png")
 
-=======
-
 n=m.addMenu("Generate")
 n.addCommand("Random", "nuke.createNode('Random')", index=3, icon="smokey-ryan.png")
 
->>>>>>> 8c0d042a884349897e667f3667dfe3bd613ad92f
 # MENUS
 # ////////////////////////////////////////////////////////////////////////////////
 menubar=nuke.menu("Nuke")
-
-m=menubar.addMenu("&File")
-#Version up Comp number
-m.addCommand("Save New Comp Version", "pipeline.script_comp_version_up()", index=5 )
-m.addCommand("Save New Anim Version", "pipeline.script_anim_version_up()", index=6 )
 
 m=menubar.addMenu("&Edit")
 #Set Project Frame Range

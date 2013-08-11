@@ -1,4 +1,4 @@
-#! /Applications/Nuke7.0v8/NukeX7.0v8.app/../Nuke7.0v8.app/Contents/MacOS/Nuke7.0v8 -nx
+#! /usr/local/Nuke7.0v8/Nuke7.0 -nx
 version 7.0 v8
 Gizmo {
  tile_color 0x910c00ff
@@ -15,7 +15,7 @@ Gizmo {
  addUserKnob {4 MetaPositionY_ctrl l Position -STARTLINE M {bottom top "title safe" ""}}
  MetaPositionY_ctrl "title safe"
  addUserKnob {26 Rulers}
- addUserKnob {3 RulersDivisions_ctrl l Divisions}
+ addUserKnob {3 RulersDivisions_ctrl l Divisions t "Must be an integer between 2 and 16"}
  RulersDivisions_ctrl 12
  addUserKnob {7 RulersOpacity_ctrl l Opacity}
  RulersOpacity_ctrl 0.75
@@ -50,7 +50,7 @@ Gizmo {
   xpos 874
   ypos 1098
  }
-set N1e8173e0 [stack 0]
+set N5239930 [stack 0]
  Dot {
   name Dot3
   xpos 984
@@ -74,7 +74,7 @@ set N1e8173e0 [stack 0]
   size 24
   yjustify center
   Transform 1
-  box {{parent.Border.BorderSize_ctrl} {parent.Border.BorderSize_ctrl+parent.Filename.size} {format.width-parent.Border.BorderSize_ctrl} {parent.Border.BorderSize_ctrl}}
+  box {{parent.Border.size} {parent.Border.size+parent.Filename.size} {format.width-parent.Border.size} {parent.Border.size}}
   name Filename
   xpos -480
   ypos 638
@@ -108,29 +108,29 @@ set N1e8173e0 [stack 0]
   xpos -446
   ypos 738
  }
-set N1e852770 [stack 0]
-push $N1e852770
+set N5280690 [stack 0]
+push $N5280690
  Invert {
   unpremult rgba.alpha
   name Invert2
   xpos -370
   ypos 728
  }
- set C1e856220 [stack 0]
+ set C5285150 [stack 0]
  Dilate {
   size 2
   name Dilate2
   xpos -370
   ypos 776
  }
- set C1e85ec10 [stack 0]
+ set C528f890 [stack 0]
  Blur {
   size 4
   name Blur3
   xpos -370
   ypos 824
  }
- set C1e866e80 [stack 0]
+ set C5298cf0 [stack 0]
  Merge2 {
   inputs 2
   name Merge5
@@ -142,23 +142,25 @@ push $N1e852770
   xpos -446
   ypos 906
  }
-set N1e87b7e0 [stack 0]
+set N52b1050 [stack 0]
  Transform {
   translate {0 {"(format.height-format.width/\[value LetterboxFormat_ctrl])/2"}}
   center {960 540}
   name meta_position_title_safe
   xpos -370
   ypos 950
+  disable {{!parent.LetterboxToggle_ctrl}}
  }
-push $N1e87b7e0
+push $N52b1050
  Transform {
-  translate {0 {format.height-2*parent.Border.BorderSize_ctrl-Filename.size}}
+  translate {0 {format.height-2*parent.Border.size-Filename.size}}
   center {960 30}
   name meta_position_top
+  selected true
   xpos -480
   ypos 950
  }
-push $N1e87b7e0
+push $N52b1050
  Dot {
   name Dot9
   xpos -556
@@ -190,229 +192,306 @@ push $N1e87b7e0
   inputs 0
   channels rgb
   name Constant3
-  xpos -40
-  ypos -33
+  xpos -260
+  ypos -105
  }
  Text {
-  message "a\n"
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
   font "\[value Font_ctrl]"
   size 18
   yjustify top
   Transform 1
-  box {0 0 0 -10}
-  translate {{"(format.width/10/2)+(format.width/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-10}}
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
   center {960 540}
   name axis_label_x_0
+  xpos -260
+  ypos -10
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_1
+  xpos -260
+  ypos 14
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_2
+  xpos -260
+  ypos 38
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_3
+  xpos -260
+  ypos 62
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_4
+  xpos -260
+  ypos 86
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_5
+  xpos -260
+  ypos 110
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_6
+  xpos -260
+  ypos 136
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_7
+  xpos -260
+  ypos 160
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_8
+  xpos -260
+  ypos 184
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_9
+  xpos -260
+  ypos 208
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_10
+  xpos -260
+  ypos 232
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_11
+  xpos -260
+  ypos 256
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_12
+  xpos -260
+  ypos 280
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_13
+  xpos -260
+  ypos 304
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_14
+  xpos -260
+  ypos 328
+ }
+ Text {
+  message "\[lrange \[split abcdefghijklmnop \{\}] \[expr \[lrange \[split \[value this.name] \"_\"] end end]] \[expr \[lrange \[split \[value this.name] \"_\"] end end]]]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{"(format.width/RulersDivisions_ctrl/2)+(format.width/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-parent.Border.size/2}}
+  center {960 540}
+  name axis_label_x_15
+  xpos -260
+  ypos 352
+ }
+ Dot {
+  name Dot12
+  xpos -226
+  ypos 402
+ }
+ Dot {
+  name Dot13
+  xpos -116
+  ypos 402
+ }
+ Dot {
+  name Dot14
+  xpos -116
+  ypos -6
+ }
+ Text {
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
+  center {960 540}
+  name axis_label_y_0
+  xpos -40
+  ypos -10
+ }
+ Text {
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
+  center {960 540}
+  name axis_label_y_1
+  xpos -40
+  ypos 14
+ }
+ Text {
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
+  center {960 540}
+  name axis_label_y_2
+  xpos -40
+  ypos 38
+ }
+ Text {
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
+  center {960 540}
+  name axis_label_y_3
   xpos -40
   ypos 62
  }
  Text {
-  message b
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
   font "\[value Font_ctrl]"
   size 18
   yjustify top
   Transform 1
-  box {0 0 0 -10}
-  translate {{"(format.width/10/2)+(format.width/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 10} {format.height-10 i}}
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
   center {960 540}
-  name axis_label_x_1
+  name axis_label_y_4
   xpos -40
   ypos 86
  }
  Text {
-  message c
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
   font "\[value Font_ctrl]"
   size 18
   yjustify top
   Transform 1
-  box {0 0 0 -10}
-  translate {{"(format.width/10/2)+(format.width/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 10} {format.height-10}}
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
   center {960 540}
-  name axis_label_x_2
+  name axis_label_y_5
   xpos -40
   ypos 110
  }
  Text {
-  message d
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {{"(format.width/10/2)+(format.width/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 10} {format.height-10 i}}
-  center {960 540}
-  name axis_label_x_3
-  xpos -40
-  ypos 134
- }
- Text {
-  message e
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {{"(format.width/10/2)+(format.width/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 864} {format.height-10 i}}
-  center {960 540}
-  name axis_label_x_4
-  xpos -40
-  ypos 158
- }
- Text {
-  message f
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {{"(format.width/10/2)+(format.width/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 10} {format.height-10 i}}
-  center {960 540}
-  name axis_label_x_5
-  xpos -40
-  ypos 182
- }
- Text {
-  message g
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {{"(format.width/10/2)+(format.width/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 10} {format.height-10 i}}
-  center {960 540}
-  name axis_label_x_6
-  xpos -40
-  ypos 206
- }
- Text {
-  message h
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {{"(format.width/10/2)+(format.width/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 10} {format.height-10 i}}
-  center {960 540}
-  name axis_label_x_7
-  xpos -40
-  ypos 230
- }
- Text {
-  message i
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {{"(format.width/10/2)+(format.width/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 10} {format.height-10 i}}
-  center {960 540}
-  name axis_label_x_8
-  xpos -40
-  ypos 254
- }
- Text {
-  message j
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {{"(format.width/10/2)+(format.width/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 10} {format.height-10 i}}
-  center {960 540}
-  name axis_label_x_9
-  xpos -40
-  ypos 278
- }
- Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
   font "\[value Font_ctrl]"
   size 18
   yjustify top
   Transform 1
-  box {0 0 0 -10}
-  translate {10 {"format.height-(format.height/10/2)-(format.height/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 1070}}
-  center {960 540}
-  name axis_label_y_0
-  xpos -40
-  ypos 326
- }
- Text {
-  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {10 {"format.height-(format.height/10/2)-(format.height/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 1070}}
-  center {960 540}
-  name axis_label_y_1
-  xpos -40
-  ypos 350
- }
- Text {
-  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {10 {"format.height-(format.height/10/2)-(format.height/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 1070}}
-  center {960 540}
-  name axis_label_y_2
-  xpos -40
-  ypos 374
- }
- Text {
-  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {10 {"format.height-(format.height/10/2)-(format.height/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 1070}}
-  center {960 540}
-  name axis_label_y_3
-  xpos -40
-  ypos 398
- }
- Text {
-  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {10 {"format.height-(format.height/10/2)-(format.height/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 1070}}
-  center {960 540}
-  name axis_label_y_4
-  xpos -40
-  ypos 422
- }
- Text {
-  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {10 {"format.height-(format.height/10/2)-(format.height/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 1070}}
-  center {960 540}
-  name axis_label_y_5
-  xpos -40
-  ypos 446
- }
- Text {
-  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
-  font "\[value Font_ctrl]"
-  size 18
-  yjustify top
-  Transform 1
-  box {0 0 0 -10}
-  translate {10 {"format.height-(format.height/10/2)-(format.height/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 1070}}
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
   center {960 540}
   name axis_label_y_6
   xpos -40
-  ypos 470
+  ypos 136
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -420,12 +499,12 @@ push $N1e87b7e0
   size 18
   yjustify top
   Transform 1
-  box {0 0 0 -10}
-  translate {10 {"format.height-(format.height/10/2)-(format.height/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 1070}}
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
   center {960 540}
   name axis_label_y_7
   xpos -40
-  ypos 494
+  ypos 160
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -433,12 +512,12 @@ push $N1e87b7e0
   size 18
   yjustify top
   Transform 1
-  box {0 0 0 -10}
-  translate {10 {"format.height-(format.height/10/2)-(format.height/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 1070}}
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
   center {960 540}
   name axis_label_y_8
   xpos -40
-  ypos 518
+  ypos 184
  }
  Text {
   message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
@@ -446,35 +525,127 @@ push $N1e87b7e0
   size 18
   yjustify top
   Transform 1
-  box {0 0 0 -10}
-  translate {10 {"format.height-(format.height/10/2)-(format.height/10)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" i x1 1070}}
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
   center {960 540}
   name axis_label_y_9
   xpos -40
-  ypos 542
+  ypos 208
+ }
+ Text {
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
+  center {960 540}
+  name axis_label_y_10
+  xpos -40
+  ypos 232
+ }
+ Text {
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
+  center {960 540}
+  name axis_label_y_11
+  xpos -40
+  ypos 256
+ }
+ Text {
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
+  center {960 540}
+  name axis_label_y_12
+  xpos -40
+  ypos 280
+ }
+ Text {
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
+  center {960 540}
+  name axis_label_y_13
+  xpos -40
+  ypos 304
+ }
+ Text {
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
+  center {960 540}
+  name axis_label_y_14
+  xpos -40
+  ypos 328
+ }
+ Text {
+  message "\[expr \[lrange \[split \[value this.name] \"_\"] end end] +1]"
+  font "\[value Font_ctrl]"
+  size 18
+  yjustify top
+  Transform 1
+  translate {{parent.Border.size/2} {"format.height-(format.height/RulersDivisions_ctrl/2)-(format.height/RulersDivisions_ctrl)*\[expr \[lrange \[split \[value this.name] \"_\"] end end]]" x1 1070}}
+  scale {1 1}
+  center {960 540}
+  name axis_label_y_15
+  xpos -40
+  ypos 352
+ }
+ Transform {
+  scale {1 {parent.LetterboxRatio.size}}
+  center {960 540}
+  name Transform1
+  xpos -40
+  ypos 398
+  disable {{!parent.LetterboxToggle_ctrl}}
  }
  Dot {
   name Dot11
   xpos -6
-  ypos 642
+  ypos 450
  }
  Constant {
   inputs 0
   channels rgb
   name Constant7
   xpos 70
-  ypos 399
+  ypos 375
+ }
+ Merge2 {
+  inputs 2
+  name Merge1
+  xpos 70
+  ypos 446
  }
  Reformat {
   type scale
-  scale {1 {"format.width/format.height/\[value LetterboxFormat_ctrl]"}}
+  scale {1 {parent.LetterboxRatio.size}}
   name Reformat4
   xpos 70
   ypos 494
   disable {{!parent.LetterboxToggle_ctrl}}
  }
- set C1d6cd450 [stack 0]
-set N1d6cd450 [stack 0]
+ set C5548620 [stack 0]
+set N5548620 [stack 0]
  Shuffle {
   alpha white
   name Shuffle1
@@ -482,20 +653,20 @@ set N1d6cd450 [stack 0]
   ypos 494
  }
  Crop {
-  box {{parent.Border.BorderSize_ctrl} {parent.Border.BorderSize_ctrl} {format.width-parent.Border.BorderSize_ctrl} {format.height-parent.Border.BorderSize_ctrl}}
+  box {{parent.Border.size} {parent.Border.size} {format.width-parent.Border.size} {format.height-parent.Border.size}}
   name Crop1
   xpos 180
   ypos 518
  }
  Radial {
-  area {{format.width/2-parent.Border.BorderSize_ctrl} {format.height/2-parent.Border.BorderSize_ctrl} {format.width/2+parent.Border.BorderSize_ctrl} {format.height/2+parent.Border.BorderSize_ctrl}}
+  area {{format.width/2-parent.Border.size} {format.height/2-parent.Border.size} {format.width/2+parent.Border.size} {format.height/2+parent.Border.size}}
   color 0
   name Radial1
   xpos 180
   ypos 566
   disable {{!parent.RulersCentreToggle_ctrl}}
  }
-push $N1d6cd450
+push $N5548620
  Grid {
   inputs 1+1
   cliptype none
@@ -505,31 +676,24 @@ push $N1d6cd450
   xpos 70
   ypos 566
  }
- Merge2 {
-  inputs 2
-  name Merge1
-  xpos 70
-  ypos 638
-  disable true
- }
  Dot {
   name Dot4
   xpos 104
   ypos 738
  }
-set N1ea0fc40 [stack 0]
-push $N1ea0fc40
-clone $C1e856220 {
+set N5577bc0 [stack 0]
+push $N5577bc0
+clone $C5285150 {
   xpos 180
   ypos 728
   selected false
  }
-clone $C1e85ec10 {
+clone $C528f890 {
   xpos 180
   ypos 776
   selected false
  }
-clone $C1e866e80 {
+clone $C5298cf0 {
   xpos 180
   ypos 824
   selected false
@@ -564,7 +728,7 @@ clone $C1e866e80 {
   xpos 510
   ypos 543
  }
-clone $C1d6cd450 {
+clone $C5548620 {
   xpos 510
   ypos 638
   selected false
@@ -585,7 +749,7 @@ clone $C1d6cd450 {
   channels rgb
   name Constant6
   xpos 620
-  ypos 399
+  ypos 351
  }
  ShuffleCopy {
   inputs 2
@@ -610,7 +774,7 @@ clone $C1d6cd450 {
   xpos 654
   ypos 1194
  }
-push $N1e8173e0
+push $N5239930
  Shuffle {
   alpha black
   name Shuffle2
@@ -654,13 +818,28 @@ push $N1e8173e0
   xpos 840
   ypos 1430
  }
+ Viewer {
+  inputs 0
+  input_process false
+  name Viewer1
+  xpos 180
+  ypos 374
+ }
  NoOp {
   inputs 0
+  name LetterboxRatio
+  xpos 510
+  ypos 350
+  addUserKnob {20 LeterboxRatio l Format}
+  addUserKnob {7 size}
+  size {{"format.width/format.height/\[value LetterboxFormat_ctrl]"}}
+ }
+ NoOp {
   name Border
-  xpos -260
-  ypos 566
-  addUserKnob {20 User}
-  addUserKnob {3 BorderSize_ctrl l Size}
-  BorderSize_ctrl 20
+  xpos 510
+  ypos 374
+  addUserKnob {20 Border}
+  addUserKnob {3 size}
+  size 20
  }
 end_group
