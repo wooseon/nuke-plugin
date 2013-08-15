@@ -59,7 +59,6 @@ def customWrite(extension = 'exr', destination = 'server'):
 		else:
 			w.knob("file").setValue(shotDir + 'Comp/' + parentDir + '/' + filename + printf + '.' + extension)
 		w.knob("compression").setValue("0")
-		w.knob("colorspace").setValue("rec709")
 	#DPX
 	if extension == "dpx":
 		if destination == "review":
