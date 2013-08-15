@@ -27,61 +27,34 @@ def script_anim_version_up():
 # ////////////////////////////////////////////////////////////////////////////////
 
 # Variable declaration
-shotDir = '[file dirname [value root.name]]/../'
-if nuke.env['WIN32']:
-	reviewDir = "Y:/"
-	editorialDir = "Z:/Projects/Arctic_Air_2/editorial/from_vfx/"
-elif nuke.env['MACOS']:
-	reviewDir = "/Volumes/Wilde/"
-	editorialDir = "/Volumes/Projects/Arctic_Air_2/editorial/from_vfx/"
-elif nuke.env['LINUX']:
-	reviewDir = "/media/Wilde/"
-	editorialDir = "media/Projects/Arctic_Air_2/editorial/from_vfx/"
-episodeName = '[file tail [file dirname [file dirname [file dirname [value root.name]]]]]'
-shotName = '[file tail [file dirname [file dirname [value root.name]]]]'
-parentDir = '[file rootname [file tail [value root.name]]]'
 filename = '[file rootname [file tail [value root.name]]]'
 printf = '.%04d'
 
 # Define function
 def customWrite(extension = 'exr', destination = 'server'):
 	w = nuke.createNode("Write")
-	w.knob("name").setValue('Write_' + extension.upper() + '_' + destination.upper())
+	
+	k = nuke.String_Knob("shotdir", "Shot Dir")
+	w.addKnob(k)
+	k = nuke.String_Knob("filename", "Filename")
+	w.addKnob(k)
+	
 	w.knob("file_type").setValue(extension)
 	w.knob("beforeRender").setValue("pipeline.createWriteDir()")
+	w.knob("filename").setValue(filename)
+	
 	# EXR
 	if extension == "exr":
-		if destination == "review":
-			w.knob("file").setValue(reviewDir + 'shots/' + episodeName + '/' + shotName + '/Comp/' + parentDir + '/' + filename + printf + '.' + 'exr')
-		elif destination == "editorial":
-			w.knob("file").setValue(editorialDir + 'Planes/'  + shotName + '/EXR/' + parentDir + '/' + filename + printf + '.' + 'exr')
-			w.knob("channels").setValue("rgba")
-		else:
-			w.knob("file").setValue(shotDir + 'Comp/' + parentDir + '/' + filename + printf + '.' + extension)
+		w.knob("shotdir").setValue(shotDir())
+		w.knob("file").setValue('[value shotdir]/[value filename]/[value filename]' + printf + '.' + extension)
 		w.knob("compression").setValue("0")
-	#DPX
-	if extension == "dpx":
-		if destination == "review":
-			w.knob("file").setValue(reviewDir + 'shots/' + episodeName + '/' + shotName + '/Comp/' + parentDir + '/' + filename + printf + '.' + 'dpx')
-		elif destination == "editorial":
-			w.knob("file").setValue(editorialDir + 'Planes/'  + shotName + '/EXR/' + parentDir + '/' + filename + printf + '.' + 'dpx')
-			w.knob("channels").setValue("rgba")
-		else:
-			w.knob("file").setValue(shotDir + 'Comp/' + parentDir + '/' + filename + printf + '.' + extension)
 	# PNG
 	elif extension == "png":
-		if destination == "editorial":
-			w.knob("file").setValue(editorialDir + 'Planes/' + shotName + '/PNG/' + parentDir + '/' + filename + printf + '.' + 'png')
-		else:
-			w.knob("file").setValue(shotDir + 'Review/' + parentDir + '/' + filename + printf + '.' + extension)
-		w.knob("colorspace").setValue("rec709")
-		w.knob("channels").setValue("rgba")
-	# MOV
-	elif extension == "mov":
-		w.knob("file").setValue(shotDir + 'Review/' + '/' + filename + printf + '.' + extension)
-		w.knob("codec").setValue("avc1")
-		w.knob("quality").setValue("High")
+		w.knob("shotdir").setValue(shotDir('Review'))
+		w.knob("file").setValue('[value shotdir]/[value filename]/[value filename]' + printf + '.' + extension)
 
+def shotDir(folder = 'Comp'):
+	return os.path.dirname(os.path.dirname(nuke.root().name())) + '/' + folder
 
 # PATHS
 # ////////////////////////////////////////////////////////////////////////////////
