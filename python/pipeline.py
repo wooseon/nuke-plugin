@@ -27,7 +27,6 @@ def script_anim_version_up():
 # ////////////////////////////////////////////////////////////////////////////////
 
 # Variable declaration
-filename = '[file rootname [file tail [value root.name]]]'
 printf = '.%04d'
 
 # Define function
@@ -41,13 +40,12 @@ def customWrite(extension = 'exr', destination = 'server'):
 	
 	w.knob("file_type").setValue(extension)
 	w.knob("beforeRender").setValue("pipeline.createWriteDir()")
-	w.knob("filename").setValue(filename)
+	w.knob("filename").setValue(filename())
 	
 	# EXR
 	if extension == "exr":
 		w.knob("shotdir").setValue(shotDir())
 		w.knob("file").setValue('[value shotdir]/[value filename]/[value filename]' + printf + '.' + extension)
-		w.knob("compression").setValue("0")
 	# PNG
 	elif extension == "png":
 		w.knob("shotdir").setValue(shotDir('Review'))
@@ -55,6 +53,9 @@ def customWrite(extension = 'exr', destination = 'server'):
 
 def shotDir(folder = 'Comp'):
 	return os.path.dirname(os.path.dirname(nuke.root().name())) + '/' + folder
+	
+def filename():
+	return os.path.basename(os.path.splitext(nuke.root().name())[0]) 
 
 # PATHS
 # ////////////////////////////////////////////////////////////////////////////////
