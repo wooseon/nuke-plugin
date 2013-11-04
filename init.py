@@ -22,6 +22,7 @@ nuke.knobDefault('Write.beforeRender', 'pipeline.createWriteDir()')
 
 # ROOT
 nuke.knobDefault('Root.project_directory', '[python {nuke.script_directory()}]/../')
+nuke.KnobDefault('Root.label', "original: /Volumes/Projects/Project/shots/shot/scripts/script.nk\nnew: \[value project_directory]scripts/script.nk")
 nuke.knobDefault('Root.format', 'HD')
 nuke.knobDefault('Root.proxy_type', 'scale')
 nuke.knobDefault('Root.proxy_scale', '.5')
