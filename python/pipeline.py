@@ -14,77 +14,69 @@ def script_comp_version_up():
 	v = int(v)
 	nuke.scriptSaveAs(nukescripts.version_set(root_name, prefix, v, v + 1))
 
-def script_anim_version_up():
-	"""Adds 1 to the _a## at the end of the script name and saves a new version."""
-	root_name = nuke.toNode("root").name()
-	(prefix, v) = nukescripts.version_get(root_name, "a")
-	if v is None: return
+	def script_anim_version_up():
+		"""Adds 1 to the _a## at the end of the script name and saves a new version."""
+		root_name = nuke.toNode("root").name()
+		(prefix, v) = nukescripts.version_get(root_name, "a")
+		if v is None: return
 
-	v = int(v)
-	nuke.scriptSaveAs(nukescripts.version_set(root_name, prefix, v, v + 1))
+		v = int(v)
+		nuke.scriptSaveAs(nukescripts.version_set(root_name, prefix, v, v + 1))
 
 # WRITE NODES
 # ////////////////////////////////////////////////////////////////////////////////
 
 # Define function
-def customWrite(server = 'file', folder = 'Comp', extension = 'exr', relative = 1):
+def customWrite(folder = 'Comp', extension = 'exr'):
 
-    #variables
-    printf = '.%04d'
-    destination = { 'file' : '/media/Projects', 'review' : '/media/Review' }
-    project = 'Arctic_Air_3'
-    shot = [route()['shot'],'[file tail [file dirname [file dirname [value root.name]]]]']
-    episode = [route()['episode'], route()['episode']]
-    filename = [route()['filename'], '[file rootname [file tail [value root.name]]]']
+	#variables
+	printf = '.%04d'
+	project = '[value project_directory]'
+	shot = '[file tail [file dirname [file dirname [value root.name]]]]'
+	filename = '[file rootname [file tail [value root.name]]]'
 
-    shotpath = destination[server] + '/' + project + '/shots/' + episode[relative] + '/' + shot[relative]
+	c = nuke.selectedNode()
 
-    c = nuke.selectedNode()
-    # We use the command below instead of w = nuke.createNode("Write") so that the user tab doesn't steal the focus
-    w = nuke.nodes.Write()
-    w.setInput(0, c)
+	if extension == "mov":
+		t = nuke.nodes.AddTimeCode( 
+			useFrame = 1, 
+			frame = 0,
+			startcode = '01:00:00:00' 
+			)
+		t.setInput(0, c)
 
-    # add new knobs
-    # k = nuke.String_Knob("shotpath", "Shot Path")
-    # w.addKnob(k)
-    # k = nuke.String_Knob("filename", "Filename")
-    # w.addKnob(k)
+	# We use the command below instead of w = nuke.createNode("Write") so that the user tab doesn't steal the focus
+	w = nuke.nodes.Write()
 
-    #set knob values
-    # w["shotpath"].setValue(shotpath)
-    # w["filename"].setValue(filename[relative]) 
-    w["file_type"].setValue(extension)
-    w["beforeRender"].setValue("pipeline.createWriteDir()")
-    w["label"].setValue(server.upper())
+	if extension == "mov":
+		w.setInput(0, t)
+	else:
+		w.setInput(0, c)
 
-    # MOV
-    if extension == "mov":
-        w["colorspace"].setValue('rec709')
-        w["codec"].setValue('AVdn')
-        w["writeTimeCode"].setValue('1')
-        w["settings"].setValue('000000000000000000000000000001d27365616e000000010000000100000000000001be76696465000000010000000f00000000000000227370746c0000000100000000000000004156646e000000000020000003ff000000207470726c000000010000000000000000000000000017f9db00000000000000246472617400000001000000000000000000000000000000530000010000000100000000156d70736f00000001000000000000000000000000186d66726100000001000000000000000000000000000000187073667200000001000000000000000000000000000000156266726100000001000000000000000000000000166d70657300000001000000000000000000000000002868617264000000010000000000000000000000000000000000000000000000000000000000000016656e647300000001000000000000000000000000001663666c67000000010000000000000000004400000018636d66720000000100000000000000004156494400000014636c757400000001000000000000000000000038636465630000000100000000000000004156494400000001000000020000000100000011000000030000000000000000000000000000001c766572730000000100000000000000000003001c00010000')
+	w["file_type"].setValue(extension)
+	w["beforeRender"].setValue("pipeline.createWriteDir()")
+	w["label"].setValue(folder.upper())
 
-        # w["file"].setValue('[value shotpath]' + '/' + folder + '/[value filename]' + '.' + extension)
-        w["file"].setValue(shotpath + '/' + folder + '/'+ filename[relative] + '.' + extension)
-    else:
-        # w["file"].setValue('[value shotpath]' + '/' + folder + '/[value filename]/[value filename]' + printf + '.' + extension)
-        w["file"].setValue(shotpath + '/' + folder + '/'+ filename[relative] + '/'+ filename[relative] + printf + '.' + extension)
-    
+	# MOV
+	if extension == "mov":
+		w["colorspace"].setValue('sRGB')
+		w["codec"].setValue('apcn')
+		w["writeTimeCode"].setValue('1')
+		w["settings"].setValue('000000000000000000000000000001cc7365616e000000010000000100000000000001b876696465000000010000000f00000000000000227370746c0000000100000000000000006170636e000000000018000003ff000000207470726c000000010000000000000000000000000017f9db00000000000000246472617400000001000000000000000000000000000000530000010000000100000000156d70736f00000001000000000000000000000000186d66726100000001000000000000000000000000000000187073667200000001000000000000000000000000000000156266726100000001000000000000000000000000166d70657300000001000000000000000000000000002868617264000000010000000000000000000000000000000000000000000000000000000000000016656e647300000001000000000000000000000000001663666c67000000010000000000000000004400000018636d66720000000100000000000000006170706c00000014636c75740000000100000000000000000000003263646563000000010000000000000000696370746e636c630002000200020100000000010000000100010001ff010000001c766572730000000100000000000000000003001c00010000')
 
-def route():
-    path = nuke.root().name()
-    p = re.compile('.*?/Arctic_Air_3/shots/(.*?)/(.*?)/Scripts/(.*?).nk')
-    m  = p.match (path)
+		w["file"].setValue(project + folder + '/'+ filename + '.' + extension)
+	elif extension == "exr":
+		w["metadata"].setValue(2)
+	else:
+		w["file"].setValue(project + folder + '/'+ filename + '/'+ filename + printf + '.' + extension)
+		w["colorspace"].setValue('sRGB')
 
-    r = { 'episode' : m.group(1), 'shot' : m.group(2), 'filename' : m.group(3) }
-
-    return r 
 
 # PATHS
 # ////////////////////////////////////////////////////////////////////////////////
 
 # CREATE DIR
-# Make directory on Save if they don't exist
+# Make directory on Save if it doesn't exist
 def createWriteDir():
 	file = nuke.filename(nuke.thisNode())
 	dir = os.path.dirname( file )
@@ -102,29 +94,29 @@ def filenameFix(filename):
 		filename = filename.replace( "Z:/", "/Volumes/Projects/" ).replace( "/media/Projects/", "/Volumes/Projects/" ).replace( "X:/", "/Volumes/Review/" ).replace( "/media/Review/", "/Volumes/Review/" ).replace( "Y:/", "/Volumes/Elements/" ).replace( "/media/Elements/", "/Volumes/Elements/" )
 	elif nuke.env['LINUX']:
 		filename = filename.replace("Z:/", "/media/Projects/").replace("/Volumes/Projects/", "/media/Projects/").replace("X:/", "/media/Review/").replace("/Volumes/Review/", "/media/Review/").replace("Y:/", "/media/Elements/").replace("/Volumes/Elements/", "/media/Elements/")
-	return filename
+		return filename
 
-nuke.addFilenameFilter(filenameFix)
-	
-# ADD FAVOURITE DIR
-project = 'Arctic_Air_3'
-vol = ''
-if nuke.env['LINUX']:
-	vol = '/media/Projects/'
-	vol2 = '/media/Elements/'
-	vol3 = '/media/Projects/Arctic_Air_3/editorial/from_vfx/'
-elif nuke.env['MACOS']:
-	vol = '/Volumes/Projects/'
-	vol2 = '/Volumes/Elements/'
-	vol3 = '/Volumes/Projects/Arctic_Air_3/editorial/from_vfx/'
-elif nuke.env['WIN32']:
-	vol = 'Z:/'
-	vol2 = 'Y:/'
-	vol3 = 'Z:/Projects/Arctic_Air_3/editorial/from_vfx/'
+		nuke.addFilenameFilter(filenameFix)
 
-nuke.addFavoriteDir('Project', vol)
-nuke.addFavoriteDir('Shots', vol + project + '/shots/')
-nuke.addFavoriteDir('Assets', vol + project + '/assets/')
-nuke.addFavoriteDir('Elements', vol2)
-nuke.addFavoriteDir('Editorial', vol3)
+# # ADD FAVOURITE DIR
+# project = 'Arctic_Air_3'
+# vol = ''
+# if nuke.env['LINUX']:
+# 	vol = '/media/Projects/'
+# 	vol2 = '/media/Elements/'
+# 	vol3 = '/media/Projects/Arctic_Air_3/editorial/from_vfx/'
+# elif nuke.env['MACOS']:
+# 	vol = '/Volumes/Projects/'
+# 	vol2 = '/Volumes/Elements/'
+# 	vol3 = '/Volumes/Projects/Arctic_Air_3/editorial/from_vfx/'
+# elif nuke.env['WIN32']:
+# 	vol = 'Z:/'
+# 	vol2 = 'Y:/'
+# 	vol3 = 'Z:/Projects/Arctic_Air_3/editorial/from_vfx/'
+
+# nuke.addFavoriteDir('Project', vol)
+# nuke.addFavoriteDir('Shots', vol + project + '/shots/')
+# nuke.addFavoriteDir('Assets', vol + project + '/assets/')
+# nuke.addFavoriteDir('Elements', vol2)
+# nuke.addFavoriteDir('Editorial', vol3)
 

@@ -9,15 +9,15 @@ m.addCommand("Owerlays", "nuke.createNode('Overlays')", index=2, icon="slate.png
 m.addSeparator()
 
 n=m.addMenu("WRITE", icon="Write.png")
-n.addCommand("Write EXR File Server", "pipeline.customWrite(extension = 'exr')", index=1, icon="Write.png")
-# n.addCommand("Write EXR Review", "pipeline.customWrite(server = 'review', extension = 'exr')", index=2, icon="Write.png")
+n.addCommand("Write DPX (relative)", "pipeline.customWrite(extension = 'dpx')", index=1, icon="Write.png")
 
 if (nuke.env['LINUX'] != 1):
-	n.addCommand("Write MOV File Server", "pipeline.customWrite('file', 'Review', 'mov' )", index=4, icon="Write.png")
+	n.addCommand("Write MOV (relative)", "pipeline.customWrite('Review', 'mov' )", index=4, icon="Write.png")
 
 n=m.addMenu("LUT", icon=":qrc/images/Toolbar3DLUT.png")
 
 n=m.addMenu("Colour", icon=":qrc/images/ToolbarColor.png")
+n.addCommand("Advanced Despill", "nuke.createNode('AdvDespill')", icon="Sphere.png")
 n.addCommand("Despill Madness", "nuke.createNode('DespillMadness')",  icon="Sphere.png")
 
 n=m.addMenu("Draw", icon=":qrc/images/ToolbarDraw.png")
@@ -34,7 +34,7 @@ n.addCommand("Directional Blur", "nuke.createNode('directionalBlur_rk')", icon="
 n.addCommand("Bokeh Blur", "nuke.createNode('BokehBlur_4')", icon=":qrc/images/ToolbarFilter.png")
 
 n=m.addMenu("Grain", icon="grain.png")
-n.addCommand("REDNoise4", "nuke.createNode('REDNoise4')", index=1, icon="red-noise.png")
+n.addCommand("REDNoise5", "nuke.createNode('REDNoise5')", index=1, icon="red-noise.png")
 n.addCommand("GrainEdge", "nuke.createNode('GrainEdge')", index=2, icon="grain.png")
 n.addCommand("GrainControl", "nuke.createNode('GrainControl')", index=3, icon="grain.png")
 
@@ -42,7 +42,7 @@ n=m.addMenu("Transform", icon=":qrc/images/ToolbarTransform.png")
 n.addCommand("SmartPin", "nuke.createNode('SmartPin')", icon="ConerPin.png")
 
 n=m.addMenu("Generate")
-n.addCommand("Random", "nuke.createNode('Random')", index=3, icon='smokey-ryan.png')
+n.addCommand("Random", "nuke.createNode('RandomWave')", index=3, icon='smokey-ryan.png')
 
 # MENUS
 # ////////////////////////////////////////////////////////////////////////////////
@@ -76,11 +76,8 @@ m.addCommand('Collect Files', 'collectFiles.collectFiles()')
 import revealInOS
 m.addCommand('Reveal In Finder','revealInOS.revealInOS()', icon='Read.png')
 m.addSeparator()
-#Metadata
-import showMetaData
-m.addCommand("Show MetaData","nuke.display('showMetaData.showMeta()', nuke.selectedNode(),'MetaData at ' + nuke.selectedNode().name(), 1000)","ctrl+m")
-m.addCommand("Mirror Nodes X Axis", "nuke.tcl('MirrorNodePos x')")
-
+import mochaToNuke
+m.addCommand('Mocha To Nuke', 'mochaToNuke.mochaToNuke()')
 
 #Templates
 
@@ -89,7 +86,7 @@ tempPath = [s for s in nuke.pluginPath() if 'templates' in s]
 m = menubar.addMenu("&Templates", index=7)
 
 m.addCommand("Additive Key", "nuke.nodePaste( '%s/additive_key.nk' % (tempPath[0]) )", index=1)
-m.addCommand("Advanced Despill", "nuke.nodePaste('%s/advanced_despill.nk' % (tempPath[0]))", index=2)
+m.addCommand("Advanced Despill", "nuke.createNode('AdvDespill')", index=2, icon="Sphere.png")
 m.addCommand("AOV", "nuke.nodePaste('%s/AOVs.nk' % (tempPath[0]))", index=3)
 m.addCommand("Fine Key", "nuke.nodePaste('%s/fine_key.nk' % (tempPath[0]))", index=4)
 
