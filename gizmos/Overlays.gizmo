@@ -20,7 +20,7 @@ Gizmo {
  addUserKnob {7 RulersOpacity_ctrl l Opacity}
  RulersOpacity_ctrl 0.75
  addUserKnob {6 RulersToggle_ctrl l "Show Rulers" +STARTLINE}
- RulersToggle_ctrl true
+ RulersToggle_ctrl false
  addUserKnob {6 RulersCentreToggle_ctrl l "Show Centre" -STARTLINE}
  RulersCentreToggle_ctrl false
  addUserKnob {26 Letterbox}
@@ -29,7 +29,7 @@ Gizmo {
  addUserKnob {7 LetterboxOpacity_ctrl l Opacity}
  LetterboxOpacity_ctrl 0.9
  addUserKnob {6 LetterboxToggle_ctrl l "Show Letterbox" +STARTLINE}
- LetterboxToggle_ctrl true
+ LetterboxToggle_ctrl false
  addUserKnob {26 ""}
  addUserKnob {3 SlateVisibleFrame_ctrl l "Slate Frame" t "The overlays are hidden on this frame."}
  SlateVisibleFrame_ctrl 40

@@ -9,10 +9,12 @@ m.addCommand("Owerlays", "nuke.createNode('Overlays')", index=2, icon="slate.png
 m.addSeparator()
 
 n=m.addMenu("WRITE", icon="Write.png")
-n.addCommand("Write DPX (relative)", "pipeline.customWrite(extension = 'dpx')", index=1, icon="Write.png")
+n.addCommand("Write DPX (Comp)", "pipeline.customWrite(extension = 'dpx')", index=1, icon="Write.png")
 
 if (nuke.env['LINUX'] != 1):
-	n.addCommand("Write MOV (relative)", "pipeline.customWrite('Review', 'mov' )", index=4, icon="Write.png")
+	n.addCommand("Write MOV (Comp)", "pipeline.customWrite('Comp', 'mov' )", index=4, icon="Write.png")
+	n.addSeparator()
+	n.addCommand("Write MOV (Review)", "pipeline.customWrite('Review', 'mov' )", index=4, icon="Write.png")
 
 n=m.addMenu("LUT", icon=":qrc/images/Toolbar3DLUT.png")
 
@@ -42,7 +44,7 @@ n=m.addMenu("Transform", icon=":qrc/images/ToolbarTransform.png")
 n.addCommand("SmartPin", "nuke.createNode('SmartPin')", icon="ConerPin.png")
 
 n=m.addMenu("Generate")
-n.addCommand("Random", "nuke.createNode('RandomWave')", index=3, icon='smokey-ryan.png')
+n.addCommand("RandomWave", "nuke.createNode('RandomWave')", index=3, icon='smokey-ryan.png')
 
 # MENUS
 # ////////////////////////////////////////////////////////////////////////////////
